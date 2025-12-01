@@ -1,20 +1,20 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import Section from "../ui/Section.astro";
-import { products } from "../data/products";
+import { courses } from "../data/courses";
 
 export async function getStaticPaths() {
-    return products.map((product) => ({
-        params: { slug: product.slug },
-        props: { product },
+    return courses.map((course) => ({
+        params: { slug: course.slug },
+        props: { course },
     }));
 }
 
-const { product } = Astro.props;
+const { course } = Astro.props;
 ---
 
-<BaseLayout title={product.title}>
-    <Section title={product.title}>
+<BaseLayout title={course.title}>
+    <Section title={course.title}>
         <style>
             /* ----------------- BREADCRUMBS ----------------- */
             .breadcrumbs {
@@ -42,8 +42,8 @@ const { product } = Astro.props;
                 color: var(--text-light);
             }
 
-            /* ----------------- PRODUCT LAYOUT ----------------- */
-            .product-wrapper {
+            /* ----------------- COURSE LAYOUT ----------------- */
+            .course-wrapper {
                 display: flex;
                 align-items: flex-start;
                 gap: 2rem;
@@ -52,7 +52,7 @@ const { product } = Astro.props;
                 padding: 2rem 3rem;
             }
 
-            .product-image {
+            .course-image {
                 flex: 1;
                 max-width: 500px;
                 height: 400px;
@@ -61,44 +61,43 @@ const { product } = Astro.props;
                 box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
             }
 
-            .product-image img {
+            .course-image img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
                 border-radius: 16px;
             }
 
-            .product-info {
+            .course-info {
                 flex: 1;
                 font-family: var(--font-main);
             }
 
-            .product-desc {
-                font-size: 1.1rem;
+            .course-desc {
+                font-size: 1.15rem;
                 line-height: 1.7;
                 color: var(--text-light);
                 margin-bottom: 1.5rem;
             }
 
-            .product-details {
+            .course-details {
                 background: var(--main-bg);
-                /* padding: 1rem 1.2rem; */
-                /* border-left: 4px solid var(--main); */
                 border-radius: 12px;
+                padding: 1rem 1.2rem;
                 margin-bottom: 1.8rem;
                 color: var(--text);
                 font-size: 1.05rem;
                 line-height: 1.7;
             }
 
-            .product-price {
-                font-size: 1.6rem;
-                font-weight: 800;
+            .course-duration {
+                font-size: 1.3rem;
+                font-weight: 700;
                 color: var(--main);
                 margin-bottom: 1.5rem;
             }
 
-            .btn-buy {
+            .btn-enroll {
                 display: inline-block;
                 padding: 1rem 2rem;
                 background: var(--main);
@@ -112,28 +111,28 @@ const { product } = Astro.props;
                 border-right: 3px solid var(--main-hover);
             }
 
-            .btn-buy span {
+            .btn-enroll span {
                 font-weight: 700;
                 font-size: 1rem;
             }
-            .btn-buy i {
+            .btn-enroll i {
                 font-size: 12px;
                 margin-left: 8px;
                 transition: 0.5s;
             }
 
-            .btn-buy:hover i {
+            .btn-enroll:hover i {
                 transform: translateX(7px);
                 transition: 0.3s;
             }
 
             @media (max-width: 900px) {
-                .product-wrapper {
+                .course-wrapper {
                     flex-direction: column;
                     text-align: center;
                     padding: 2rem 0rem;
                 }
-                .product-image {
+                .course-image {
                     max-width: 100%;
                 }
                 .breadcrumbs {
@@ -146,31 +145,30 @@ const { product } = Astro.props;
         <div class="breadcrumbs">
             <a href="/">Home</a>
             <span>›</span>
-            <a href="/products">Products</a>
+            <a href="/courses">Courses</a>
             <span>›</span>
-            <span>{product.title}</span>
+            <span>{course.title}</span>
         </div>
 
-        <div class="product-wrapper">
-            <!-- PRODUCT IMAGE -->
-            <div class="product-image">
-                <img src={product.image} alt={product.title} />
+        <div class="course-wrapper">
+            <!-- COURSE IMAGE -->
+            <div class="course-image">
+                <img src={course.image} alt={course.title} />
             </div>
 
-            <!-- PRODUCT INFO -->
-            <div class="product-info">
-                <p class="product-desc">{product.desc}</p>
+            <!-- COURSE INFO -->
+            <div class="course-info">
+                <p class="course-desc">{course.desc}</p>
 
-                <div class="product-details">
-                    {product.details}
+                <div class="course-details">
+                    <strong>Duration:</strong>
+                    {course.duration}
                 </div>
 
-                <div class="product-price">{product.price}</div>
-
-                <a href="/contactus" class="btn-buy"
-                    ><span>Contact to Order</span>
-                    <i class="fa-solid fa-arrow-right-long"></i></a
-                >
+                <a href="/contactus" class="btn-enroll">
+                    <span>Enroll Now</span>
+                    <i class="fa-solid fa-arrow-right-long"></i>
+                </a>
             </div>
         </div>
     </Section>
