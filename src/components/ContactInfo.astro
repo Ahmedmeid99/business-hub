@@ -1,0 +1,230 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    :root {
+        --brand: #ff7415;
+        --dark: #111;
+        --text: #444;
+        --text-light: #777;
+        --bg-soft: #faf7f5;
+    }
+
+    .contact-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5px;
+        max-width: 1300px;
+        margin: auto;
+    }
+
+    /* LEFT CARD (INFO) */
+    .info-card {
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 22px;
+        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eee;
+    }
+
+    .info-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        margin-bottom: 1.8rem;
+        color: var(--dark);
+    }
+
+    .info-list {
+        display: flex;
+        flex-direction: column;
+        gap: 1.4rem;
+    }
+
+    /* INFO ITEM */
+    .info-item {
+        display: flex;
+        align-items: center;
+        gap: 1.2rem;
+        padding: 1rem;
+        border-radius: 14px;
+        position: relative;
+    }
+
+    /* Pencil spot behind icon */
+    .info-item::before {
+        content: "";
+        position: absolute;
+        left: 3px;
+        top: 6px;
+        width: 75px;
+        height: 38px;
+        z-index: 0;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 25 Q25 5 40 20 T70 25 Q55 35 35 30 T10 25' fill='%23ff7415' fill-opacity='0.25'/%3E%3C/svg%3E");
+    }
+
+    .info-icon {
+        width: 52px;
+        height: 52px;
+        border-radius: 14px;
+        background: rgba(255, 116, 21, 0.16);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.4rem;
+        color: var(--brand);
+        position: relative;
+        z-index: 2;
+    }
+
+    .info-text strong {
+        font-size: 1.2rem;
+        color: var(--dark);
+        font-weight: 700;
+    }
+
+    .info-text span,
+    .info-text a {
+        font-size: 1rem;
+        color: var(--text-light);
+        text-decoration: none;
+    }
+
+    .info-text a:hover {
+        color: var(--brand);
+    }
+
+    /* RIGHT CARD (FORM) */
+    .form-card {
+        background: #fff;
+        padding: 2.5rem;
+        border-radius: 22px;
+        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
+        border: 1px solid #eee;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 1rem;
+        border-radius: 12px;
+        border: 1px solid #ddd;
+        font-size: 1rem;
+        font-family: inherit;
+        background: #fafafa;
+        transition: 0.3s;
+    }
+
+    input:focus,
+    textarea:focus {
+        border-color: var(--brand);
+        background: #fff;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 116, 21, 0.2);
+    }
+
+    textarea {
+        height: 150px;
+        resize: none;
+    }
+
+    button {
+        padding: 1.1rem;
+        background: var(--brand);
+        border: none;
+        border-radius: 14px;
+        color: #fff;
+        font-size: 1.1rem;
+        cursor: pointer;
+        transition: 0.35s;
+        font-weight: 600;
+    }
+
+    button:hover {
+        background: #e8670f;
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(255, 116, 21, 0.35);
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .contact-wrapper {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<Section
+    title="Get in Touch"
+    subTitle="Reach out for consultations, inquiries, or collaborations — we're here to help your business grow."
+>
+    <div class="contact-wrapper">
+        <!-- LEFT: CONTACT INFORMATION -->
+        <div class="info-card">
+            <h3 class="info-title">Contact Information</h3>
+
+            <div class="info-list">
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-location-dot"></i>
+                    </div>
+                    <div class="info-text">
+                        <strong>Our Location</strong>
+                        <span>123 Mobility Street, Cairo, Egypt</span>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-phone"></i>
+                    </div>
+                    <div class="info-text">
+                        <strong>Phone</strong>
+                        <a href="tel:+201234567890">+20 123 456 7890</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-envelope"></i>
+                    </div>
+                    <div class="info-text">
+                        <strong>Email</strong>
+                        <a href="mailto:info@tabemed.com">info@tabemed.com</a>
+                    </div>
+                </div>
+
+                <div class="info-item">
+                    <div class="info-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+                    <div class="info-text">
+                        <strong>Working Hours</strong>
+                        <span>Sat – Thu, 9:00 AM – 6:00 PM</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT: CONTACT FORM -->
+        <div class="form-card">
+            <h3 class="info-title">Send Us a Message</h3>
+
+            <form>
+                <input type="text" placeholder="Your Name" required />
+                <input type="email" placeholder="Email Address" required />
+                <input type="text" placeholder="Subject" />
+                <textarea placeholder="Your Message" required></textarea>
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+    </div>
+</Section>

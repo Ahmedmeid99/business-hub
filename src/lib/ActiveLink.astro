@@ -1,0 +1,28 @@
+---
+const { href, text, current } = Astro.props;
+const isHome = href === "/";
+const isActive = isHome
+    ? current === "/"
+    : current === href || current.startsWith(href + "/");
+---
+
+<a href={href} class={isActive ? "active" : ""}>{text}</a>
+
+<style>
+    a {
+        padding: 0.6rem 0.8rem;
+        border-radius: 6px;
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    a:hover {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    a.active {
+        background: rgba(255, 255, 255, 0.12);
+    }
+</style>

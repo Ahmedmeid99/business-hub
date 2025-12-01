@@ -1,0 +1,85 @@
+---
+import { products } from "../data/products";
+import Product from "../ui/Product.astro";
+import Section from "../ui/Section.astro";
+
+const someProducts = products.slice(0, 3);
+---
+
+<style>
+    .products-section {
+        text-align: center;
+    }
+
+    .products-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--text);
+        margin-bottom: 2rem;
+    }
+
+    /* Product grid */
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2rem;
+        margin-bottom: 2.5rem;
+    }
+
+    /* STORE BUTTON */
+    .store-btn {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.9rem 2rem;
+        background: var(--main);
+        color: var(--white);
+        border-radius: 8px;
+        text-decoration: none;
+        transition: 0.3s;
+        border: none;
+        border-bottom: 5px solid var(--main-hover);
+        border-right: 3px solid var(--main-hover);
+    }
+    .store-btn span {
+        font-weight: 700;
+        font-size: 1rem;
+    }
+    .store-btn i {
+        font-size: 12px;
+        margin-left: 8px;
+        transition: 0.5s;
+    }
+
+    .store-btn:hover i {
+        transform: translateX(7px);
+        transition: 0.3s;
+    }
+</style>
+
+<Section
+    title="Our Products"
+    subTitle="Advanced prosthetic and orthotic products for daily mobility."
+>
+    <div class="products-section" id="products">
+        <!-- Product Cards -->
+        <div class="products-grid">
+            {
+                someProducts.map((p) => (
+                    <Product
+                        title={p.title}
+                        desc={p.desc}
+                        price={p.price}
+                        image={p.image}
+                        slug={p.slug}
+                    />
+                ))
+            }
+        </div>
+
+        <!-- GO TO STORE BUTTON -->
+        <a href="/products" class="store-btn"
+            ><span>Go to Store</span>
+            <i class="fa-solid fa-arrow-right-long"></i>{" "}</a
+        >
+    </div>
+</Section>

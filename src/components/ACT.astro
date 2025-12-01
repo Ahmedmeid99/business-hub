@@ -1,0 +1,99 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    .act {
+        width: 100%;
+        padding: 3rem;
+        background-color: var(--main, #80d1ea);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+    }
+    .act h2 {
+        margin: 0;
+        margin-bottom: 10px;
+        font-size: 2rem;
+        text-align: center;
+    }
+    .act p {
+        font-size: 15px;
+        max-width: 800px;
+        margin: auto;
+        padding-left: 2rem;
+        padding-right: 2rem;
+        color: #fff;
+        margin: 0.5rem 0 0 0;
+        text-align: center;
+        line-height: 1.5;
+    }
+    .btn-flex {
+        display: flex;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+    .btn-flex a {
+        padding: 0.8rem 1.5rem;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        border: 1px solid transparent;
+        text-decoration: none;
+        transition:
+            background-color 0.3s,
+            color 0.3s;
+    }
+    .btn-contact {
+        background-color: #fff;
+        color: var(--main, #80d1ea);
+    }
+    .btn-contact:hover {
+        background-color: var(--main-hover);
+        color: #fff;
+        /* border: 1px solid #fff; */
+    }
+    .btn-more {
+        background-color: transparent;
+        color: #fff;
+        border: 1px solid #fff !important;
+    }
+
+    .btn-more:hover {
+        background-color: var(--main-hover);
+        /* color: var(--main, #80d1ea); */
+        /* border: 1px solid #fff; */
+    }
+    @media (max-width: 600px) {
+        .act {
+            padding: 2rem;
+        }
+        .act p {
+            padding: 0;
+        }
+        .btn-flex a {
+            font-size: 0.8rem;
+        }
+    }
+</style>
+<Section>
+    <div class="act" id="act">
+        <h2 class="act-title">
+            Move Better and Live Fully With Support That Helps You Walk Stronger
+            Every Day
+        </h2>
+
+        <p class="act-text">
+            Whether you're seeking advanced prosthetics, precision orthotics, or
+            personalized mobility care, TabeMed is here to support every step of
+            your journey. Let’s bring movement — and life — back together.
+        </p>
+
+        <div class="btn-flex">
+            <a href="/contactus" class="btn-contact">Contact Us</a>
+            <a href="/about" class="btn-more">Learn More</a>
+        </div>
+    </div>
+</Section>

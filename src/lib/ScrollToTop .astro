@@ -1,0 +1,75 @@
+---
+/* No props needed */
+---
+
+<style>
+    #toTopBtn {
+        position: fixed;
+        bottom: 35px;
+        right: -50px;
+        background: var(--main);
+        color: white;
+        width: 50px;
+        height: 73px;
+        border-radius: 100px;
+        border: none;
+        border: 2px solid var(--main-hover);
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: -1 4px 14px rgba(0, 0, 0, 7%);
+        /* opacity: 0; */
+        pointer-events: none;
+        transition:
+            right 0.5s ease,
+            transform 0.3s ease;
+        z-index: 9999;
+    }
+
+    #toTopBtn i {
+        pointer-events: none;
+        font-size: 14px;
+        transition: 0.5s;
+    }
+    #toTopBtn.show {
+        /* opacity: 1; */
+        right: 35px;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    #toTopBtn:hover i {
+        transform: translateY(-10px);
+    }
+    @media (max-width: 600px) {
+        #toTopBtn {
+            width: 40px;
+            height: 60px;
+        }
+    }
+</style>
+
+<button id="toTopBtn" aria-label="Scroll to top">
+    <!-- font owsome scroll to top -->
+    <i class="fas fa-arrow-up"></i>
+</button>
+
+<script>
+    const toTopBtn = document.getElementById("toTopBtn");
+
+    // Show button after scrolling down
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+            toTopBtn?.classList.add("show");
+        } else {
+            toTopBtn?.classList.remove("show");
+        }
+    });
+
+    // Smooth scroll
+    toTopBtn?.addEventListener("click", () => {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
+    });
+</script>

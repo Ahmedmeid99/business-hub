@@ -1,0 +1,211 @@
+---
+import { Image } from "astro:assets";
+import logo from "../../public/images/BH_logo_vertical.png";
+---
+
+<style>
+    :root {
+        --brand: #ff7415;
+    }
+
+    footer {
+        background: var(--main);
+        color: #fff;
+        padding: 3rem 2rem;
+        font-family: inherit;
+        position: relative;
+    }
+
+    .logo {
+        width: 200px;
+        margin-bottom: 2rem;
+    }
+
+    .logo img {
+        width: 100%;
+        height: auto;
+    }
+
+    /* ================= GRID ================= */
+    .footer-container {
+        max-width: 1200px;
+        margin: auto;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 2.8rem;
+    }
+
+    /* ================= SECTION LINE (WHITE PENCIL STYLE) ================= */
+    .section-line {
+        width: 160px;
+        height: 14px;
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        background-position: center;
+        margin: 0.4rem 0 1rem 0;
+
+        /* White irregular pencil SVG stroke */
+        background-image: url("data:image/svg+xml,%3Csvg width='300' height='20' viewBox='0 0 300 20' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M5 10 Q 40 4, 80 10 T 160 10 T 240 10 T 295 10' stroke='%23ffffff' stroke-width='6' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M5 10 Q 40 6, 80 12 T 160 8 T 240 13 T 295 9' stroke='%23ffffff' stroke-width='2' opacity='0.4' fill='none'/%3E%3C/svg%3E");
+    }
+
+    /* ================= COLUMN TITLES ================= */
+    .footer-col h4 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+        color: #fff;
+    }
+
+    /* ================= LINKS ================= */
+    .footer-col ul {
+        list-style: none;
+        padding: 0;
+        margin-top: 0.5rem;
+    }
+
+    .footer-col ul li {
+        margin: 0.6rem 0;
+        display: flex;
+        align-items: center;
+    }
+
+    .footer-col ul i {
+        font-size: 10px;
+        color: #ffffffb7;
+        margin-right: 7px;
+    }
+
+    .footer-col ul li a {
+        color: #ffffffc9;
+        text-decoration: none;
+        font-size: 1rem;
+        transition: 0.3s ease;
+    }
+
+    .footer-col ul li a:hover {
+        margin-left: 6px;
+        color: #fff;
+    }
+
+    /* ================= SOCIALS ================= */
+    .social-icons a {
+        display: inline-block;
+        margin-right: 12px;
+        font-size: 1.4rem;
+        color: #ffffffcc;
+        transition: 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: #fff;
+        transform: scale(1.15);
+    }
+
+    /* ================= FOOTER BOTTOM ================= */
+    .footer-bottom {
+        text-align: center;
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.15);
+        font-size: 0.95rem;
+        color: #ffffffc7;
+    }
+</style>
+
+<footer>
+    <div class="logo">
+        <a href="/">
+            <Image src={logo} alt="Company Logo" height={100} />
+        </a>
+    </div>
+
+    <div class="footer-container">
+        <!-- Social -->
+        <div class="footer-col">
+            <h4>Follow Us</h4>
+            <div class="section-line"></div>
+            <div class="social-icons">
+                <a href="#"><i class="fa-brands fa-facebook"></i></a>
+                <a href="#"><i class="fa-brands fa-x-twitter"></i></a>
+                <a href="#"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+
+        <!-- Column 1 -->
+        <div class="footer-col">
+            <h4>Company</h4>
+            <div class="section-line"></div>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/"
+                        >Home</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/about"
+                        >About Business Hub</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/services"
+                        >Services</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/gallery"
+                        >Gallery</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Column 2 -->
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <div class="section-line"></div>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/products"
+                        >Products</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a
+                        href="#testimonials">Testimonials</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="#faq"
+                        >FAQs</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a
+                        href="/contactus">Contact</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Column 3 -->
+        <div class="footer-col">
+            <h4>Quick Links</h4>
+            <div class="section-line"></div>
+            <ul>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/about"
+                        >Who We Are</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/services"
+                        >What We Offer</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a href="/gallery"
+                        >Our Work</a>
+                </li>
+                <li>
+                    <i class="fa-solid fa-chevron-right"></i><a
+                        href="/contactus">Get in Touch</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        &copy; 2025 Business Hub. All rights reserved.
+    </div>
+</footer>

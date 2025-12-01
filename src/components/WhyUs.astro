@@ -1,0 +1,197 @@
+---
+import Card from "../ui/cards/Card.astro";
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    .info {
+        background: #faf7f5;
+        padding: 5rem 2rem;
+    }
+
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2.5rem;
+        max-width: 1250px;
+        margin: 0 auto;
+    }
+
+    /* ================= CARD BASE ================= */
+    .grid-3 :global(.card) {
+        background: #fff;
+        border-radius: 20px;
+        padding: 2.2rem 1.8rem;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.07);
+        border: 1px solid #f0f0f0;
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .grid-3 :global(.card:hover) {
+        /* transform: translateY(-8px); */
+        box-shadow: 0 18px 44px rgba(0, 0, 0, 0.1);
+    }
+
+    /* ================= CIRCLE ANIMATION ONLY ================= */
+    .grid-3 :global(.card)::before {
+        content: "";
+        position: absolute;
+        top: -40px;
+        left: -40px;
+        width: 120px;
+        height: 120px;
+        background: #ff7415;
+        opacity: 0.22;
+        border-radius: 50%;
+        transform: scale(1);
+        transition:
+            transform 0.55s ease,
+            opacity 0.45s ease,
+            width 0.55s ease,
+            height 0.55s ease,
+            top 0.55s ease,
+            left 0.55s ease;
+        z-index: 0;
+    }
+
+    .grid-3 :global(.card:hover)::before {
+        width: 500px;
+        height: 500px;
+        top: -200px;
+        left: -200px;
+        opacity: 0.28;
+        transform: scale(1.4);
+    }
+
+    /* Keep card content above animation */
+    .grid-3 :global(.card > *) {
+        position: relative;
+        z-index: 2;
+    }
+
+    /* ================= ICON ================= */
+    .grid-3 :global(.card-icon) {
+        position: relative;
+        margin-bottom: 2rem;
+        padding-bottom: 1.2rem;
+        display: inline-block;
+    }
+
+    .grid-3 :global(.card-icon i) {
+        font-size: 2rem !important;
+        color: #ff7415 !important;
+        position: relative;
+        z-index: 3;
+    }
+
+    /* ================= PENCIL SPOT UNDER ICON ================= */
+    .grid-3 :global(.card-icon)::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 0;
+        width: 80px;
+        height: 40px;
+
+        background-repeat: no-repeat;
+        background-size: contain;
+        background-position: left;
+
+        /* The pencil spot SVG (ORANGE) */
+        background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 25 Q25 5 40 20 T70 25 Q55 35 35 30 T10 25' fill='%23ff7415' fill-opacity='0.28'/%3E%3C/svg%3E");
+
+        z-index: 1;
+    }
+
+    /* ================= TITLE ================= */
+    .grid-3 :global(.card-title) {
+        font-size: 1.25rem !important;
+        font-weight: 700 !important;
+        margin-bottom: 0.7rem !important;
+        color: #222 !important;
+    }
+
+    /* ================= DESCRIPTION ================= */
+    .grid-3 :global(.card-description) {
+        font-size: 1.05rem !important;
+        line-height: 1.7 !important;
+        color: #555 !important;
+    }
+
+    /* ================= BOTTOM LINE ================= */
+    .grid-3 :global(.card)::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: #ff7415;
+        transition: width 0.3s ease;
+        z-index: 3;
+    }
+
+    .grid-3 :global(.card:hover)::after {
+        width: 100%;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 900px) {
+        .grid-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<Section
+    title="Why Choose TabeMed"
+    subTitle="Where mobility science, human dignity, and Egyptian ingenuity come together."
+>
+    <div class="grid-3" id="why-us">
+        <Card
+            iconClass="fas fa-feather-alt"
+            title="Strategic Insight Rooted in Experience"
+            description="We combine analytical depth with practical experience to help organizations make better, faster, and more confident decisions."
+        />
+
+        <Card
+            iconClass="fas fa-shoe-prints"
+            title="Clarity That Moves You Forward"
+            description="We simplify complex challenges and deliver actionable frameworks that guide your next steps with precision and confidence."
+        />
+
+        <Card
+            iconClass="fas fa-microscope"
+            title="Data-Driven Business Analysis"
+            description="Every recommendation is backed by measurable indicators, operational data, and industry-aligned performance insights."
+        />
+
+        <Card
+            iconClass="fas fa-robot"
+            title="Modern Tools & Smart Methodologies"
+            description="From workflow optimization to digital transformation, we apply contemporary consulting methodologies to accelerate organizational growth."
+        />
+
+        <Card
+            iconClass="fas fa-heart"
+            title="Human-Centered Organizational Development"
+            description="People are at the core of every successful organization. We design environments that enhance engagement, capability, and long-term performance."
+        />
+
+        <Card
+            iconClass="fas fa-globe"
+            title="Local Understanding. Global Standards."
+            description="Business Hub blends regional expertise with internationally recognized business frameworks to deliver high-value consulting solutions."
+        />
+    </div>
+</Section>

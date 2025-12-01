@@ -1,0 +1,77 @@
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+
+
+:root {
+    /* --font-main: 'Quicksand', sans-serif; */
+    --font-main: "Noto Sans", "Noto Sans Arabic", sans-serif;
+
+    /* --main: #4ebddc; */
+    /*#81D1E7; */
+    /* --main-hover: #81D1E7; */
+    /* #4ebddc; */
+    --main-bg: rgb(255 227 208);
+    /* --accent: #fcf8c3; */
+    /* --accent-hover: #ffe5b3; */
+    --text: #1b3d6c;
+    /*#1b3d6c; */
+    --text-light: #555555;
+
+    --main: #ff7415;
+    --main-hover: #d15e11;
+    --accent: #f4b400;
+    --accent-hover: #c79200;
+
+    /* #4285f4 */
+
+
+    --white: #ffffff;
+    --nav-height: 90px;
+    --card-bg: #ffffff;
+    --main-rgb: 129, 209, 231;
+    /* manually extracted rgb from #81D1E7 */
+
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-padding-top: 270px;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-main);
+    /* font-family: 'Nunito Sans', sans-serif; */
+
+    margin: 0;
+    color: var(--text);
+    background-color: var(--main-bg);
+
+    overflow-x: hidden;
+}
+
+::selection {
+    background-color: var(--main);
+    color: var(--accent-hover);
+}
+
+/* small styling for demo page */
+main {
+    overflow-x: hidden;
+    padding: 5rem 0 0;
+}
+
+p {
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.hero {
+    padding: 2rem;
+    background: linear-gradient(180deg, var(--accent), #fff9ee);
+    border-radius: 12px;
+}

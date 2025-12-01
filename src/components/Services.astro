@@ -1,0 +1,99 @@
+---
+import Card from "../ui/cards/Card.astro";
+import ServiceCard from "../ui/cards/ServiceCard.astro";
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    .grid-3 {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0rem;
+        max-width: 1200px;
+        margin: 0 auto;
+    }
+    h3 {
+        margin-bottom: 20px;
+    }
+    p {
+        color: var(--text-light);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Responsive */
+    @media (max-width: 900px) {
+        .grid-3 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @media (max-width: 600px) {
+        .grid-3 {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+<Section
+    title="Our Services"
+    subTitle="Modern mobility care inspired by Egyptian heritage."
+>
+    <div class="grid-3" id="services">
+        <!-- Prosthetics -->
+        <ServiceCard iconClass="fas fa-person-walking">
+            <h3>Custom Prosthetics</h3>
+            <p>
+                Precision-crafted upper and lower limb prosthetics designed for
+                comfort, stability, and natural movement — so every step feels
+                confident.
+            </p>
+        </ServiceCard>
+
+        <!-- Orthotics -->
+        <ServiceCard iconClass="fas fa-shoe-prints">
+            <h3>Orthotic Solutions</h3>
+            <p>
+                Supportive braces and orthoses that relieve pain, improve
+                alignment, and enhance daily mobility for all ages.
+            </p>
+        </ServiceCard>
+
+        <!-- Clinical Assessment -->
+        <ServiceCard iconClass="fas fa-microscope">
+            <h3>Clinical Assessment</h3>
+            <p>
+                Evidence-based gait analysis, evaluation, and personalized
+                treatment plans to ensure the right mobility solution for every
+                individual.
+            </p>
+        </ServiceCard>
+
+        <!-- Fitting & Adjustment -->
+        <ServiceCard iconClass="fas fa-tools">
+            <h3>Fitting & Adjustments</h3>
+            <p>
+                Precise fitting sessions and ongoing adjustments to maintain
+                comfort, improve performance, and adapt to lifestyle changes.
+            </p>
+        </ServiceCard>
+
+        <!-- Follow-Up Care -->
+        <ServiceCard iconClass="fas fa-hand-holding-heart">
+            <h3>Follow-Up & Support</h3>
+            <p>
+                Continuous care, education, and check-ins to keep mobility
+                devices working at their best — long after delivery.
+            </p>
+        </ServiceCard>
+
+        <!-- Digital Care -->
+        <ServiceCard iconClass="fas fa-mobile-screen-button">
+            <h3>Digital Mobility Care</h3>
+            <p>
+                Remote guidance, progress tracking, and support tools that make
+                your mobility journey easier, safer, and more connected.
+            </p>
+        </ServiceCard>
+    </div>
+</Section>

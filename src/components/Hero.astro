@@ -1,0 +1,337 @@
+---
+const slides = [
+    {
+        img: "", //images/hero-1.jpg"
+        title: "Inspired by Tabe Ketin Met",
+        subtitle:
+            "From Egypt’s first prosthetic toe to tomorrow’s mobility solutions — dignity in every step.",
+        cta: "Explore Our Story",
+        link: "#about",
+    },
+    {
+        img: "/images/08.png",
+        title: "Where Science Meets Compassion",
+        subtitle:
+            "Assessments, fittings, follow-up, and education — all built on evidence and dignity.",
+        cta: "Contact Us",
+        link: "/contactus",
+    },
+    {
+        img: "/images/03.jpg",
+        title: "Advanced Mobility, Human Comfort",
+        subtitle:
+            "Prosthetics, orthotics, and digital care designed around real life — walk farther, live better.",
+        cta: "Our Services",
+        link: "#services",
+    },
+];
+---
+
+<style>
+    .slider {
+        position: relative;
+        width: 100%;
+        height: 90vh;
+        overflow: hidden;
+        z-index: 0;
+    }
+
+    .slide {
+        position: absolute;
+        inset: 0;
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        flex-direction: column;
+        color: white;
+        background-color: var(--main);
+        opacity: 0;
+        transform: translateX(100%);
+        transition:
+            transform 1s ease,
+            opacity 1s ease;
+        pointer-events: none;
+    }
+
+    .slide.active {
+        opacity: 1;
+        transform: translateX(0);
+        pointer-events: auto;
+        z-index: 2;
+    }
+
+    .slide.prev {
+        transform: translateX(-100%);
+        z-index: 1;
+    }
+
+    .slide.next {
+        transform: translateX(100%);
+        z-index: 1;
+    }
+
+    /* Overlay */
+    .overlay {
+        position: absolute;
+        inset: 0;
+        /* background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)); */
+        z-index: 1;
+    }
+
+    .slide-content {
+        position: relative;
+        z-index: 2;
+        width: 85%;
+        margin: auto;
+        animation: fadeInUp 1s ease forwards;
+    }
+
+    .slide-content h1 {
+        font-size: 4rem;
+        max-width: 600px;
+        margin-bottom: 10px;
+        animation: fadeIn 1s ease forwards;
+    }
+
+    .slide-content p {
+        font-size: 16px;
+        max-width: 500px;
+        margin-bottom: 40px;
+        letter-spacing: 0.7px;
+        animation: fadeIn 1.2s ease forwards;
+    }
+
+    .slide-content a {
+        padding: 20px 50px;
+        font-size: 15px;
+        background: var(--main);
+        border: 3px solid var(--main-hover);
+        color: #000;
+        border-radius: 6px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: background 0.3s;
+        animation: fadeIn 1.5s ease forwards;
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        width: fit-content;
+    }
+    .slide-content i {
+        font-size: 12px;
+        margin-left: 8px;
+        transition: 0.5s;
+    }
+    .slide-content a:hover {
+        background: var(--main-hover);
+    }
+
+    .slide-content a:hover i {
+        transform: translateX(7px);
+    }
+
+    /* Dots */
+    .dots {
+        position: absolute;
+        bottom: 20px;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        z-index: 5;
+    }
+
+    .dot {
+        width: 12px;
+        height: 12px;
+        background: #fff;
+        opacity: 0.6;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .dot.active {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    /* Arrows */
+    .arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: rgba(0, 0, 0, 0.2);
+        color: #fff;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 20px;
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .arrow i {
+        font-size: 15px;
+        transition: transform 0.3s ease;
+    }
+
+    .arrow:hover i {
+        /* transform: scale(1.2); */
+    }
+
+    .arrow:hover {
+        background: rgba(0, 0, 0, 0.4);
+    }
+
+    .arrow.left {
+        left: 20px;
+    }
+    .arrow.right {
+        right: 20px;
+    }
+
+    @media (max-width: 900px) {
+        .slide-content {
+            width: 75%;
+        }
+        .slide-content h1 {
+            font-size: 3rem;
+        }
+        .slide-content p {
+            font-size: 1rem;
+        }
+        .arrow.left,
+        .arrow.right {
+            display: none;
+        }
+        .arrow.left {
+            left: 0px;
+        }
+        .arrow.right {
+            right: 0px;
+        }
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        0% {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    @keyframes fadeIn {
+        0% {
+            opacity: 0;
+        }
+        100% {
+            opacity: 1;
+        }
+    }
+</style>
+
+<div class="slider">
+    {
+        slides.map((s, i) => (
+            <div
+                class={`slide ${i === 0 ? "active" : i === slides.length - 1 ? "prev" : "next"}`}
+                style={`background-image: url('${s.img}')`}
+            >
+                <div class="overlay" />
+                <div class="slide-content">
+                    <h1>{s.title}</h1>
+                    <p>{s.subtitle}</p>
+                    <a href={s.link}>
+                        <span>{s.cta}</span>
+                        <i class="fa-solid fa-arrow-right-long" />{" "}
+                    </a>
+                </div>
+            </div>
+        ))
+    }
+
+    <!-- ✅ Arrows with Icons -->
+    <div class="arrow left"><i class="fa-solid fa-chevron-left"></i></div>
+    <div class="arrow right"><i class="fa-solid fa-chevron-right"></i></div>
+
+    <div class="dots">
+        {
+            slides.map((_, i) => (
+                <div class={`dot ${i === 0 ? "active" : ""}`} data-index={i} />
+            ))
+        }
+    </div>
+</div>
+
+<script is:inline>
+    const slides = document.querySelectorAll(".slide");
+    const dots = document.querySelectorAll(".dot");
+    const leftArrow = document.querySelector(".arrow.left");
+    const rightArrow = document.querySelector(".arrow.right");
+    let index = 0;
+
+    function updateSlides(newIndex) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove("active", "prev", "next");
+            if (i === newIndex) slide.classList.add("active");
+            else if (i === (newIndex - 1 + slides.length) % slides.length)
+                slide.classList.add("prev");
+            else slide.classList.add("next");
+        });
+
+        dots.forEach((d) => d.classList.remove("active"));
+        dots[newIndex].classList.add("active");
+
+        index = newIndex;
+    }
+
+    function nextSlide() {
+        updateSlides((index + 1) % slides.length);
+    }
+    function prevSlide() {
+        updateSlides((index - 1 + slides.length) % slides.length);
+    }
+
+    dots.forEach((dot) =>
+        dot.addEventListener("click", () =>
+            updateSlides(parseInt(dot.dataset.index)),
+        ),
+    );
+    rightArrow.addEventListener("click", nextSlide);
+    leftArrow.addEventListener("click", prevSlide);
+
+    // ------------------------------
+    // 🚀 MOBILE TOUCH SWIPE SUPPORT
+    // ------------------------------
+    let startX = 0;
+    let endX = 0;
+
+    const slider = document.querySelector(".slider");
+
+    slider.addEventListener("touchstart", (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchmove", (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    slider.addEventListener("touchend", () => {
+        const diff = startX - endX;
+
+        if (Math.abs(diff) > 50) {
+            if (diff > 0)
+                nextSlide(); // swipe left
+            else prevSlide(); // swipe right
+        }
+    });
+
+    // Auto play (optional)
+    // setInterval(nextSlide, 7000);
+</script>

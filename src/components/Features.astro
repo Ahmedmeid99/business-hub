@@ -1,0 +1,136 @@
+---
+
+---
+
+<style>
+    .fun-facts {
+        padding: 3.5rem 0;
+        background-color: var(--main);
+        margin: 3rem auto;
+    }
+
+    .facts-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 1.5rem;
+    }
+
+    /* Each fact-box auto adjusts */
+    .fact-box {
+        flex: 1 1 calc(33.333% - 1.5rem);
+        min-width: 260px; /* Prevents collapsing too small */
+        background: #ffffff;
+        border-radius: 18px;
+        padding: 1.6rem 1.2rem;
+        border: 1px solid #ececec;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Internal layout stays the same */
+    .fact-row {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .fact-icon i {
+        font-size: 2.2rem;
+        color: var(--main);
+    }
+
+    .fact-title {
+        font-size: 1rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: #105975;
+        line-height: 1.3;
+        text-align: left;
+        flex: 1;
+        margin: 0 1rem;
+    }
+
+    .fact-number {
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: #111;
+        text-align: right;
+    }
+</style>
+
+<section class="fun-facts" id="counter">
+    <div class="facts-container">
+        <!-- FACT 1 -->
+        <div class="fact-box">
+            <div class="fact-row">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-chart-line"></i>
+                </div>
+                <div class="fact-title">Business<br /> Strategies</div>
+                <div class="fact-number" data-count="350">0</div>
+            </div>
+        </div>
+
+        <!-- FACT 2 -->
+        <div class="fact-box">
+            <div class="fact-row">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-diagram-project"></i>
+                </div>
+                <div class="fact-title">Process<br /> Improvements</div>
+                <div class="fact-number" data-count="500">0</div>
+            </div>
+        </div>
+
+        <!-- FACT 3 -->
+        <div class="fact-box">
+            <div class="fact-row">
+                <div class="fact-icon">
+                    <i class="fa-solid fa-users-gear"></i>
+                </div>
+                <div class="fact-title">Client<br /> Satisfaction</div>
+                <div class="fact-number" data-count="95">0</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script is:inline>
+    // Count-up animation when visible
+    const counters = document.querySelectorAll(".fact-number");
+
+    const runCounter = (counter) => {
+        const target = +counter.dataset.count;
+        let current = 0;
+        const speed = target / 80;
+
+        const update = () => {
+            current += speed;
+            if (current < target) {
+                counter.textContent = Math.floor(current);
+                requestAnimationFrame(update);
+            } else {
+                counter.textContent = target + (target > 100 ? "+" : "");
+            }
+        };
+        update();
+    };
+
+    const observer = new IntersectionObserver(
+        (entries, obs) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    runCounter(entry.target);
+                    obs.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.4 },
+    );
+
+    counters.forEach((counter) => observer.observe(counter));
+</script>

@@ -1,0 +1,41 @@
+<style>
+    #page-loader {
+        position: fixed;
+        inset: 0;
+        background: var(--main); /* Change if needed */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 999999;
+        transition:
+            opacity 1s ease,
+            visibility 1s ease;
+    }
+
+    #page-loader.hidden {
+        opacity: 0;
+        visibility: hidden;
+    }
+
+    .loader-video {
+        width: 100%; /* Adjust video size */
+        height: auto;
+        /* No animation added — video animates itself */
+    }
+</style>
+
+<!-- Page Loader -->
+<div id="page-loader">
+    <video class="loader-video" autoplay playsinline>
+        <source src="/images/loader.mp4" type="video/mp4" />
+    </video>
+</div>
+
+<script is:inline>
+    window.addEventListener("load", () => {
+        const loader = document.getElementById("page-loader");
+        setTimeout(() => {
+            loader.classList.add("hidden");
+        }, 5500); // Smooth fade-out delay
+    });
+</script>

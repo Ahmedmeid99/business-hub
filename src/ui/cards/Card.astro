@@ -1,0 +1,113 @@
+---
+const { iconClass, title, description } = Astro.props;
+---
+
+<style>
+    .card {
+        background: var(--card-bg, #fff);
+        border-radius: 16px;
+        padding: 2.2rem 1.5rem;
+        text-align: center;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        transition: 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .card:hover {
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+    }
+
+    /* ICON */
+    .icon i {
+        font-size: 2.8rem;
+        color: var(--main, #0088a9);
+        margin-bottom: 0.8rem;
+        transition: transform 0.3s ease;
+        display: inline-block;
+    }
+
+    .card:hover .icon i {
+        transform: scale(1.12);
+    }
+
+    /* ✏️ Pencil Line UNDER ICON */
+    .pencil-line {
+        width: 140px;
+        height: 26px;
+        margin: -6px auto 1rem auto;
+        background-size: contain;
+        background-position: center;
+        background-repeat: no-repeat;
+        opacity: 0.92;
+
+        /* Hand-drawn pencil underline (orange) */
+        background-image: url("data:image/svg+xml,%3Csvg width='200' height='40' viewBox='0 0 200 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 20 Q40 4 90 18 T170 22 Q140 33 90 27 T12 20' stroke='%23ff7415' stroke-width='6' stroke-linecap='round' stroke-linejoin='round' fill='none'/%3E%3C/svg%3E");
+        transition: transform 0.3s ease;
+    }
+
+    /* Slight wobble effect on hover */
+    .card:hover .pencil-line {
+        transform: scale(1.05);
+    }
+
+    /* Title */
+    .card h3 {
+        font-size: 1.45rem;
+        font-weight: 700;
+        color: #105975;
+        margin-bottom: 0.7rem;
+        transition: color 0.3s ease;
+    }
+
+    /* Description */
+    .card p {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+        transition: color 0.3s ease;
+    }
+
+    /* Hover background fill */
+    .card::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 100%;
+        height: 1%;
+        background: var(--main, #0088a9);
+        transform: translateX(-50%);
+        border-radius: 8px;
+        transition: 0.4s ease;
+        z-index: -1;
+    }
+
+    .card:hover::after {
+        height: 100%;
+    }
+
+    .card:hover h3,
+    .card:hover p {
+        color: #fff !important;
+    }
+</style>
+
+<div class="card">
+    <!-- ICON -->
+    {
+        iconClass && (
+            <div class="icon">
+                <i class={iconClass} />
+            </div>
+        )
+    }
+
+    <!-- ✏️ Pencil underline -->
+    <div class="pencil-line"></div>
+
+    {title && <h3>{title}</h3>}
+    {description && <p>{description}</p>}
+
+    <slot />
+</div>

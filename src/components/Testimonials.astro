@@ -1,0 +1,358 @@
+---
+import Section from "../ui/Section.astro";
+
+const testimonials = [
+    {
+        name: "Sarah Johnson",
+        role: "Client",
+        image: "/images/people/person_1.jpg",
+        quote: "Business Hub transformed the way our organization makes decisions. Strategic clarity like never before.",
+        rating: 5,
+    },
+    {
+        name: "Dr. Ahmed Samir",
+        role: "Director of Operations",
+        image: "/images/people/person_2.jpg",
+        quote: "Their analysis and planning frameworks helped us restructure our workflows with measurable improvements.",
+        rating: 5,
+    },
+    {
+        name: "Michael Lee",
+        role: "Business Owner",
+        image: "/images/people/person_3.jpg",
+        quote: "Professional, insightful, and truly transformative. A consulting experience that exceeded expectations.",
+        rating: 4,
+    },
+];
+
+const makeStars = (rating: number) =>
+    "★".repeat(rating) + "☆".repeat(5 - rating);
+---
+
+<style>
+    :root {
+        --brand: #ff7415;
+        --dark: #111;
+        --text: #444;
+        --bg-soft: #faf7f5;
+    }
+
+    .ts-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem 4rem 1rem;
+        position: relative;
+    }
+
+    /* MAIN SLIDER WRAPPER (viewport) */
+    .ts-slider {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+        height: 450px;
+    }
+
+    /* INNER TRACK – holds all slides horizontally */
+
+    .ts-track {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        transition: transform 0.65s ease;
+    }
+
+    /* Each slide takes full width */
+    .ts-slide {
+        min-width: 100%;
+        height: 100%;
+        padding: 2.5rem;
+        /* background: #fff; */
+        border-radius: 24px;
+        /* box-shadow: 0 12px 35px rgba(0, 0, 0, 0.08); */
+        border: 1px solid #ededed;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.3rem;
+    }
+
+    .ts-slide img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 5px solid var(--brand);
+        box-shadow: 0 0 0 6px rgba(255, 116, 21, 0.25);
+    }
+
+    .ts-quote {
+        font-size: 1.45rem;
+        font-style: italic;
+        line-height: 1.8;
+        color: var(--dark);
+        margin-bottom: 0.5rem;
+        text-align: center;
+        position: relative;
+        padding: 0 2.2rem;
+    }
+
+    /* opening quote */
+    .ts-quote::before {
+        content: "“";
+        font-size: 3.2rem;
+        font-weight: 700;
+        color: var(--brand);
+        position: absolute;
+        left: -0.6rem;
+        top: -1.5rem;
+        opacity: 0.9;
+    }
+
+    /* closing quote */
+    .ts-quote::after {
+        content: "”";
+        font-size: 2.8rem;
+        font-weight: 700;
+        color: var(--brand);
+        position: absolute;
+        right: -0.6rem;
+        bottom: -1.3rem;
+        opacity: 0.4;
+    }
+
+    .ts-name {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--dark);
+    }
+
+    .ts-role {
+        font-size: 1.05rem;
+        color: var(--text);
+        margin-bottom: 0.5rem;
+    }
+
+    .ts-stars {
+        color: #ffb800;
+        font-size: 1.3rem;
+    }
+
+    /* DOTS */
+    .ts-dots {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .ts-dot {
+        width: 14px;
+        height: 14px;
+        background: var(--brand);
+        opacity: 0.35;
+        border-radius: 50%;
+        cursor: pointer;
+        transition: 0.25s ease;
+    }
+
+    .ts-dot.ts-active {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+
+    /* ARROWS */
+    .ts-arrow {
+        position: absolute;
+        top: 40%;
+        transform: translateY(-50%);
+        font-size: 1.6rem;
+        color: var(--brand);
+        cursor: pointer;
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: 0.25s ease;
+        z-index: 10;
+    }
+
+    .ts-arrow:hover {
+        background: var(--brand);
+        color: #fff;
+    }
+
+    .ts-arrow-left {
+        left: -35px;
+    }
+    .ts-arrow-right {
+        right: -35px;
+    }
+
+    @media (max-width: 900px) {
+        .ts-arrow-left {
+            left: 0;
+        }
+        .ts-arrow-right {
+            right: 0;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .ts-slider {
+            height: auto;
+            min-height: 500px;
+        }
+        .ts-slide {
+            padding: 2rem 1.3rem;
+        }
+    }
+</style>
+
+<!-- ============================= SECTION ============================= -->
+
+<Section
+    title="What Our Clients Say"
+    subTitle="Real stories from organizations transformed by Business Hub."
+>
+    <div class="ts-wrapper" data-testimonials id="testimonials">
+        <!-- ARROWS -->
+        <div class="ts-arrow ts-arrow-left" id="tsPrev">
+            <i class="fa-solid fa-chevron-left"></i>
+        </div>
+        <div class="ts-arrow ts-arrow-right" id="tsNext">
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <!-- SLIDER -->
+        <div class="ts-slider">
+            <div class="ts-track">
+                <!-- CLONE LAST SLIDE -->
+                <div class="ts-slide clone">
+                    <img src={testimonials[testimonials.length - 1].image} />
+                    <p class="ts-quote">
+                        {testimonials[testimonials.length - 1].quote}
+                    </p>
+                    <div class="ts-name">
+                        {testimonials[testimonials.length - 1].name}
+                    </div>
+                    <div class="ts-role">
+                        {testimonials[testimonials.length - 1].role}
+                    </div>
+                    <div class="ts-stars">
+                        {
+                            makeStars(
+                                testimonials[testimonials.length - 1].rating,
+                            )
+                        }
+                    </div>
+                </div>
+
+                <!-- REAL SLIDES -->
+                {
+                    testimonials.map((t) => (
+                        <div class="ts-slide">
+                            <img src={t.image} />
+                            <p class="ts-quote">{t.quote}</p>
+                            <div class="ts-name">{t.name}</div>
+                            <div class="ts-role">{t.role}</div>
+                            <div class="ts-stars">{makeStars(t.rating)}</div>
+                        </div>
+                    ))
+                }
+
+                <!-- CLONE FIRST SLIDE -->
+                <div class="ts-slide clone">
+                    <img src={testimonials[0].image} />
+                    <p class="ts-quote">{testimonials[0].quote}</p>
+                    <div class="ts-name">{testimonials[0].name}</div>
+                    <div class="ts-role">{testimonials[0].role}</div>
+                    <div class="ts-stars">
+                        {makeStars(testimonials[0].rating)}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- DOTS -->
+        <div class="ts-dots">
+            {
+                testimonials.map((_, i) => (
+                    <div
+                        class={`ts-dot ${i === 0 ? "ts-active" : ""}`}
+                        data-index={i}
+                    />
+                ))
+            }
+        </div>
+    </div>
+</Section>
+
+<script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+        const root = document.querySelector("[data-testimonials]");
+        const track = root.querySelector(".ts-track");
+        const dots = root.querySelectorAll(".ts-dot");
+        const nextBtn = root.querySelector("#tsNext");
+        const prevBtn = root.querySelector("#tsPrev");
+
+        const totalReal = dots.length;
+        let index = 1; // start at first REAL slide
+
+        // Set initial offset
+        track.style.transform = `translateX(-${index * 100}%)`;
+
+        const updateDots = () => {
+            dots.forEach((d) => d.classList.remove("ts-active"));
+            dots[(index - 1 + totalReal) % totalReal].classList.add(
+                "ts-active",
+            );
+        };
+
+        const goTo = (i) => {
+            index = i;
+            track.style.transition = "transform 0.65s ease";
+            track.style.transform = `translateX(-${index * 100}%)`;
+            updateDots();
+        };
+
+        const next = () => goTo(index + 1);
+        const prev = () => goTo(index - 1);
+
+        track.addEventListener("transitionend", () => {
+            // If moved past LAST real slide → jump to first real
+            if (index === totalReal + 1) {
+                track.style.transition = "none";
+                index = 1;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
+
+            // If moved before FIRST real slide → jump to last real
+            if (index === 0) {
+                track.style.transition = "none";
+                index = totalReal;
+                track.style.transform = `translateX(-${index * 100}%)`;
+            }
+        });
+
+        nextBtn.addEventListener("click", next);
+        prevBtn.addEventListener("click", prev);
+
+        dots.forEach((dot, i) => {
+            dot.addEventListener("click", () => {
+                goTo(i + 1);
+            });
+        });
+
+        let timer = setInterval(next, 4500);
+        const reset = () => {
+            clearInterval(timer);
+            timer = setInterval(next, 4500);
+        };
+
+        nextBtn.addEventListener("click", reset);
+        prevBtn.addEventListener("click", reset);
+        dots.forEach((dot) => dot.addEventListener("click", reset));
+    });
+</script>

@@ -1,0 +1,213 @@
+---
+import Section from "../ui/Section.astro";
+import aboutImage from "../../public/images/01.jpg";
+import aboutImage2 from "../../public/images/01.jpg"; // second image
+---
+
+<style>
+    :root {
+        --brand: #ff7415;
+        --dark: #111;
+        --text: #333;
+        --bg-soft: #faf7f5;
+    }
+
+    .about-wrapper {
+        position: relative;
+        background: var(--main-bg);
+        padding: 6rem 0;
+        overflow: hidden;
+        margin-bottom: 3rem;
+    }
+
+    /* ORANGE CURVE */
+    .orange-curve {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 55%;
+        height: 70%;
+        background: var(--brand);
+        border-bottom-right-radius: 220px;
+        z-index: 1;
+    }
+
+    /* MIRRORED CURVE FOR SECOND SECTION */
+    .orange-curve.right {
+        left: auto;
+        right: 0;
+        border-bottom-right-radius: 0;
+        border-bottom-left-radius: 220px;
+    }
+
+    .content-area {
+        position: relative;
+        z-index: 3;
+        max-width: 1300px;
+        margin: 0 auto;
+        padding: 2rem;
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        text-align: left;
+        gap: 3rem;
+    }
+
+    /* TEXT BLOCK */
+    .left-block,
+    .right-block-text {
+        padding-left: 2rem;
+    }
+
+    .main-title {
+        font-size: 2.4rem;
+        font-weight: 700;
+        color: var(--dark);
+        margin-bottom: 1.5rem;
+        line-height: 1.3;
+    }
+
+    .main-text {
+        color: var(--text);
+        line-height: 1.8rem;
+        margin-bottom: 2rem;
+        font-size: 1.05rem;
+        max-width: 550px;
+    }
+
+    .slogan {
+        font-size: 2.3rem;
+        font-weight: 600;
+        line-height: 1.4;
+        margin-top: 2rem;
+    }
+
+    .slogan span {
+        color: var(--dark);
+    }
+
+    /* IMAGE MASK */
+    .image-mask {
+        width: 100%;
+        height: 360px;
+        border-radius: 0 0 360px 360px;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .image-mask img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    /* MIRRORED IMAGE MASK */
+    .image-mask.mirror {
+        border-radius: 360px 360px 0 0;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 900px) {
+        .orange-curve {
+            width: 100%;
+            height: 45%;
+            border-bottom-right-radius: 160px;
+        }
+        .orange-curve.right {
+            border-bottom-left-radius: 160px;
+        }
+
+        .content-area {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .left-block,
+        .right-block-text {
+            padding-left: 0;
+        }
+
+        .main-text {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .image-mask,
+        .image-mask.mirror {
+            margin: 0 auto;
+            width: 85%;
+        }
+    }
+</style>
+
+<!-- ========================== SECTION 1 ========================== -->
+<Section>
+    <div class="about-wrapper">
+        <div class="orange-curve"></div>
+
+        <div class="content-area">
+            <!-- TEXT LEFT -->
+            <div class="left-block">
+                <img
+                    src="/images/BH_logo_vertical.png"
+                    style="width:165px; margin-bottom:2rem;"
+                />
+
+                <h2 class="main-title">
+                    Business Consulting and Professional Development
+                </h2>
+
+                <p class="main-text">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+                    aliquam erat volutpat.
+                </p>
+
+                <div class="slogan">
+                    Training <span>minds.</span><br />
+                    Building <span>businesses.</span>
+                </div>
+            </div>
+
+            <!-- IMAGE RIGHT -->
+            <div class="image-mask">
+                <img src={aboutImage.src} alt="About" />
+            </div>
+        </div>
+    </div>
+</Section>
+
+<!-- ========================== SECTION 2 (MIRRORED) ========================== -->
+<!-- <Section>
+    <div class="about-wrapper">
+        <div class="orange-curve right"></div>
+
+        <div class="content-area">
+            <div class="image-mask mirror">
+                <img src={aboutImage2.src} alt="About" />
+            </div>
+
+            <div class="right-block-text">
+                <img
+                    src="/images/BH_logo_vertical.png"
+                    style="width:165px; margin-bottom:2rem;"
+                />
+
+                <h2 class="main-title">
+                    Strategic Planning & Organizational Development
+                </h2>
+
+                <p class="main-text">
+                    Helping organizations build clarity, direction, and
+                    measurable performance through structured planning and
+                    modern management frameworks.
+                </p>
+
+                <div class="slogan">
+                    Empowering <span>leaders.</span><br />
+                    Transforming <span>organizations.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</Section> -->

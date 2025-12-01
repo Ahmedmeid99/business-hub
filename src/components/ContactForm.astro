@@ -1,0 +1,164 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    .sticky-section {
+        position: relative;
+        width: 100%;
+    }
+
+    .sticky-image {
+        position: sticky;
+        top: 0;
+        height: 120vh;
+        background: linear-gradient(#80d1eadd, #80d1ea9d),
+            url("../../public/images/01.jpg");
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        z-index: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .contact-form {
+        max-width: 700px;
+        width: 100%;
+        padding: 2rem;
+        margin: auto;
+        border-radius: 14px;
+        background: white;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-row {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    .contact-row > div {
+        flex: 1;
+        flex-basis: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+        padding: 0.9rem 1rem;
+        border-radius: 8px;
+        border: 2px solid #eee;
+    }
+
+    textarea {
+        min-height: 150px;
+    }
+
+    #form-status {
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 600;
+    }
+
+    .submit-btn {
+        margin-top: 1rem;
+        width: 100%;
+        padding: 1rem;
+        border-radius: 8px;
+        border: none;
+        color: white;
+        background: var(--main);
+        cursor: pointer;
+        font-size: 1.1rem;
+        border-bottom: 5px solid var(--main-hover);
+        border-right: 3px solid var(--main-hover);
+    }
+    @media (max-width: 687px) {
+        .contact-row {
+            flex-direction: column;
+        }
+
+        .sticky-image {
+            height: auto;
+            padding: 0px;
+        }
+        .section {
+            padding-top: 0 !important;
+        }
+    }
+</style>
+
+<div class="sticky-section">
+    <div class="sticky-image">
+        <Section title="Contact Us">
+            <form id="contactForm" class="contact-form">
+                <div class="contact-row">
+                    <div>
+                        <label>Full Name</label>
+                        <input name="user_name" required />
+                    </div>
+
+                    <div>
+                        <label>Email</label>
+                        <input type="email" name="user_email" required />
+                    </div>
+                </div>
+
+                <div class="contact-row">
+                    <div>
+                        <label>Phone</label>
+                        <input type="tel" name="user_phone" />
+                    </div>
+
+                    <div>
+                        <label>Subject</label>
+                        <input name="user_subject" />
+                    </div>
+                </div>
+
+                <label>Message</label>
+                <textarea name="user_message" required></textarea>
+
+                <button class="submit-btn">Send Message</button>
+
+                <p id="form-status"></p>
+            </form>
+        </Section>
+    </div>
+</div>
+
+<script is:inline>
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("form-status");
+
+    form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        status.textContent = "Sending...";
+        status.style.color = "var(--main)";
+
+        const formData = new FormData(form);
+
+        const res = await fetch("/api/send-email", {
+            method: "POST",
+            body: formData,
+        });
+
+        const result = await res.json();
+
+        if (result.success) {
+            status.textContent = "✔ Message sent successfully!";
+            status.style.color = "green";
+            form.reset();
+        } else {
+            status.textContent = "❌ Failed to send message. Try again.";
+            status.style.color = "red";
+        }
+    });
+</script>

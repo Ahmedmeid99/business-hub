@@ -1,0 +1,509 @@
+---
+import { Image } from "astro:assets";
+import logo from "../../public/images/BH_logo_vertical.png";
+import logo_2 from "../../public/images/BH_logo_vertical-2.png" 
+import ActiveLink from "../lib/ActiveLink.astro";
+---
+
+<style>
+    /* Navbar */
+    .nav-wrap {
+        background: var(--main);
+        z-index: 30;
+        position: fixed;
+        width: 100%;
+        top: 0;
+            box-shadow: 0px 3px 10px rgba(0, 0, 0, 10%);
+    }
+    .navbar-top {
+        background: var(--accent);
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        gap: 38px;
+        height: 50px;
+        padding: 0 2rem;
+    }
+
+    header.navbar {
+        height: var(--nav-height);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-left: 1rem;
+        width: 90%;
+        max-width: 1200px;
+        margin: 0 auto;
+        position: relative;
+    }
+
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 700;
+        width: 200px;
+    }
+
+    .brand .logo {
+        border-radius: 8px;
+        background: var(--white);
+        display: inline-grid;
+        place-items: center;
+        color: var(--main);
+        font-weight: 800;
+        background: transparent;
+    }
+    
+    .brand .logo a{
+display: block;
+    }
+    .brand .logo img{
+        width: 100%;
+        height: 100%;
+    }
+    .brand .title {
+        font-size: 1.05rem;
+    }
+
+    nav.main-nav {
+        display: flex;
+        gap: 1rem;
+        align-items: center;
+    }
+
+    nav.main-nav a {
+        padding: 0.6rem 0.8rem;
+        border-radius: 6px;
+        color: var(--white);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1rem;
+    }
+
+    nav.main-nav a:hover {
+        background: rgba(255, 255, 255, 0.12);
+    }
+
+    /* Dropdown */
+    .arrow.down i {
+        font-size: 12px;
+    }
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown > button {
+        display: flex;
+        align-items: center;
+        background: transparent;
+        border: 0;
+        color: var(--white);
+        cursor: pointer;
+        padding: 0.6rem 0.8rem;
+        border-radius: 6px;
+        font-size: 1rem;
+        font-weight: 600;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        left: 0;
+        top: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        min-width: 180px;
+        background: var(--main);
+        color: var(--text);
+        border: 2px solid var(--accent);
+        border-top-color: transparent;
+        padding: 0.4rem;
+        margin-top: 1rem;
+        transform: rotateX(90deg);
+        transform-origin: top;
+        z-index: 40;
+        transition: 0.5s;
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 0.6rem 0.8rem;
+        color: inherit;
+        text-decoration: none;
+        border-radius: 6px;
+    }
+
+    .dropdown-menu a:hover {
+        background: var(--accent);
+    }
+
+    .dropdown.open .dropdown-menu {
+        transform: rotateX(0deg);
+    }
+
+    /* CTA and utilities */
+    .nav-actions {
+        display: flex;
+        gap: 0.6rem;
+        align-items: center;
+    }
+    .btn a {
+        color: var(--text);
+        text-decoration: none;
+    }
+    .btn {
+        background: var(--accent);
+        border: none;
+        border-bottom: 5px solid var(--accent-hover);
+        border-right: 3px solid var(--accent-hover);
+        color: var(--text);
+        /* padding: 0.5rem 0.9rem; */
+        padding: 20px 50px;
+        border-radius: 8px;
+        font-weight: 700;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        /* background-color: var(--accent-hover); */
+    }
+
+    /* Hamburger - mobile */
+    .hamburger {
+        display: none;
+        background: transparent;
+        border: 0;
+        font-size: 2.5rem;
+        padding-left: 2rem;
+        padding-bottom: 5px;
+        color: var(--white);
+        cursor: pointer;
+    }
+
+    /* Side menu for small screens */
+    .side-menu {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100vh;
+        width: 280px;
+        background: var(--main-bg);
+        box-shadow: 2px 0 20px rgba(2, 6, 23, 0.12);
+        transform: translateX(-110%);
+        transition: transform 0.32s ease;
+        z-index: 60;
+        padding: 1rem;
+    }
+    .side-menu .logo{
+        width: 185px;
+    }
+ .side-menu a {
+    position: relative;
+    display: block;
+    padding-bottom: 1.2rem; /* space for the pencil spot */
+}
+
+.side-menu a::after {
+    content: "";
+    position: absolute;
+    left: 8px;
+    bottom: 0px;
+    width: 90px;
+    height: 22px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    pointer-events: none;
+
+    /* Pencil spot (orange) */    
+    opacity: 0.0;
+    transform: translateY(6px) scale(0.9);
+    transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+/* Show pencil spot on hover */
+.side-menu a:hover::after {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+}
+    .side-menu .logo a img{
+        width: 100%;
+        height: auto;
+    }
+
+    .side-menu.open {
+        transform: translateX(0);
+    }
+    #closeSide {
+        position: absolute;
+        top: 18px;
+        right: 18px;
+        width: 42px;
+        height: 42px;
+        border: none;
+        outline: none;
+        border-radius: 50%;
+        background: var(--accent);
+        color: var(--white);
+        cursor: pointer;
+        font-size: 1.4rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        backdrop-filter: blur(4px);
+        transition: 0.25s ease;
+    }
+
+    #closeSide:hover {
+        background: var(--accent-hover)
+        transform: scale(1.08);
+    }
+
+    #closeSide i {
+        pointer-events: none;
+        font-size: 1.3rem;
+        color: var(--text);
+
+    }
+
+    .side-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+    }
+
+    .side-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+
+    .side-links a,
+    summary {
+        padding: 0.65rem 0.8rem;
+        border-radius: 8px;
+        text-decoration: none;
+        color: var(--text);
+        font-weight: 600;
+
+    }
+
+    .side-links a:hover {
+        background: var(--accent);
+    }
+    .nested-links {
+        display: flex;
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    /* overlay when side menu open */
+    .overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(2, 6, 23, 0.36);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s;
+        z-index: 50;
+    }
+
+    .overlay.show {
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    /* Responsive behavior */
+    @media (max-width: 900px) {
+        nav.main-nav {
+            display: none;
+        }
+
+        .hamburger {
+            display: inline-block;
+        }
+
+        .btn {
+            padding: 15px 35px;
+        }
+    }
+
+    @media (min-width: 901px) {
+        .side-menu {
+            display: none;
+        }
+
+        .overlay {
+            display: none;
+        }
+    }
+</style>
+
+<div class="nav-wrap">
+    <header class="navbar">
+        <div class="brand">
+            <div class="logo">
+                <a href="/">
+                    <Image src={logo} alt="Company Logo" height={80} />
+                </a>
+            </div>
+            <div class="title" style="color:#105975;"></div>
+        </div>
+
+        <button class="hamburger" id="hamburger">☰</button>
+
+        <nav class="main-nav">
+            <ActiveLink href="/" text="Home" current={Astro.url.pathname} />
+            <ActiveLink
+                href="/about"
+                text="About"
+                current={Astro.url.pathname}
+            />
+            <!-- <div class="dropdown" id="servicesDropdown">
+                <button>
+                    <ActiveLink
+                        href="/services"
+                        text="Services"
+                        current={Astro.url.pathname}
+                    />
+                    <div class="arrow down">
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </div></button
+                >
+                <div class="dropdown-menu">
+                    <ActiveLink
+                        href="/services/consulting"
+                        text="Consulting"
+                        current={Astro.url.pathname}
+                    />
+                    <ActiveLink
+                        href="/services/development"
+                        text="Development"
+                        current={Astro.url.pathname}
+                    />
+                    <ActiveLink
+                        href="/services/design"
+                        text="Design"
+                        current={Astro.url.pathname}
+                    />
+                </div>
+            </div> -->
+           
+            <ActiveLink
+                href="/services"
+                text="Services"
+                current={Astro.url.pathname}
+            />
+            <ActiveLink
+                href="/Courses"
+                text="Courses"
+                current={Astro.url.pathname}
+            />
+            <ActiveLink
+                href="/contactus"
+                text="Contact"
+                current={Astro.url.pathname}
+            />
+        </nav>
+
+        <div class="nav-actions">
+            <button class="btn"><a href="contactus">Get in touch</a></button>
+        </div>
+    </header>
+</div>
+
+<aside class="side-menu" id="sideMenu">
+    <div class="side-top">
+        <div style="display:flex;align-items:center;gap:.6rem">
+            <div class="logo">
+                <a href="/">
+                    <Image src={logo_2} alt="Company Logo" height={80} />
+                </a>
+            </div>
+        </div>
+        <button id="closeSide">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <nav class="side-links">
+        <a href="/">Home</a>
+        <a href="/about">About</a>
+
+        <a href="/services">Services</a>
+        <!-- <details>
+            <summary>Services</summary>
+            <div class="nested-links">
+                <a href="/services/Consulting">Consulting</a>
+                <a href="/services/development">Development</a>
+                <a href="/services/design">Design</a>
+            </div>
+        </details> -->
+        <a href="/Courses">Courses</a>
+        <a href="/contactus">Contact</a>
+    </nav>
+
+    <!-- <button class="btn" style="width:100%;margin-top:auto">Get Started</button> -->
+</aside>
+
+<div class="overlay" id="overlay"></div>
+
+<script>
+    // Dropdown toggle
+    const dropdown = document.getElementById("servicesDropdown");
+    const ddButton = dropdown?.querySelector("button");
+
+    ddButton?.addEventListener("click", () => {
+        const open = dropdown?.classList.toggle("open");
+        ddButton.setAttribute("aria-expanded", String(!!open));
+    });
+
+    // Side Menu
+    const hamburger = document.getElementById("hamburger");
+    const sideMenu = document.getElementById("sideMenu");
+    const closeSide = document.getElementById("closeSide");
+    const overlay = document.getElementById("overlay");
+
+    hamburger?.addEventListener("click", () => {
+        sideMenu?.classList.add("open");
+        overlay?.classList.add("show");
+    });
+
+    function closeSideMenu() {
+        sideMenu?.classList.remove("open");
+        overlay?.classList.remove("show");
+    }
+
+    closeSide?.addEventListener("click", closeSideMenu);
+    overlay?.addEventListener("click", closeSideMenu);
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+        const target = e.target as Node | null;
+        if (!dropdown?.contains(target)) {
+            dropdown?.classList.remove("open");
+            ddButton?.setAttribute("aria-expanded", "false");
+        }
+    });
+
+    // ESC key closes menus
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") {
+            closeSideMenu();
+            dropdown?.classList.remove("open");
+        }
+    });
+
+    // SCROLL-ACTIVATED HOVER
+    window.addEventListener("scroll", () => {
+        const navbar = document.querySelector(".navbar");
+        if (window.scrollY > 80) {
+            navbar?.classList.add("scrolled");
+        } else {
+            navbar?.classList.remove("scrolled");
+        }
+    });
+</script>

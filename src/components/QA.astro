@@ -1,0 +1,176 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    :root {
+        --brand: #ff7415;
+        --dark: #111;
+        --text: #444;
+        --bg-soft: #faf7f5;
+    }
+
+    .faq-container {
+        max-width: 850px;
+        margin: auto;
+        padding-bottom: 3rem;
+    }
+
+    .faq-item {
+        background: #fff;
+        border-radius: 16px;
+        margin-bottom: 14px;
+        overflow: hidden;
+        border: 1px solid #eee;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
+        transition: 0.3s ease;
+    }
+
+    .faq-item:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Hide checkbox */
+    .faq-item input {
+        display: none;
+    }
+
+    /* ================= QUESTION ================= */
+    .faq-question {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 22px;
+        font-size: 1.15rem;
+        font-weight: 600;
+        cursor: pointer;
+        background: #fafafa;
+        color: var(--dark);
+        transition:
+            background 0.3s,
+            color 0.3s;
+        position: relative;
+    }
+
+    .faq-item input:checked + .faq-question {
+        background: rgba(255, 116, 21, 0.08);
+        color: var(--brand);
+    }
+
+    /* ================= HALF CIRCLE ICON ================= */
+    .faq-question::after {
+        content: "";
+        width: 18px;
+        height: 9px; /* half circle */
+        background: var(--brand);
+        border-radius: 18px 18px 0 0; /* top half circle */
+        position: absolute;
+        right: 20px;
+        top: 50%;
+        transform: translateY(-50%) rotate(0deg);
+        transition: transform 0.35s ease;
+    }
+
+    /* Rotate 180° when opened */
+    .faq-item input:checked + .faq-question::after {
+        transform: translateY(-50%) rotate(180deg);
+    }
+
+    /* ================= ANSWER ================= */
+    .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        background: #fff;
+        color: var(--text);
+        font-size: 1rem;
+        padding: 0 22px;
+        border-top: 1px solid #eee;
+        line-height: 1.7rem;
+        transition: 0.35s cubic-bezier(0.3, 0.6, 0.35, 1);
+        opacity: 0;
+    }
+
+    .faq-item input:checked ~ .faq-answer {
+        padding: 18px 22px 22px 22px;
+        max-height: 300px;
+        opacity: 1;
+    }
+
+    /* ================= RESPONSIVE ================= */
+    @media (max-width: 768px) {
+        .faq-question {
+            font-size: 1rem;
+            padding: 18px;
+        }
+
+        .faq-answer {
+            font-size: 0.95rem;
+        }
+    }
+</style>
+
+<Section
+    title="Frequently Asked Questions"
+    subTitle="Clear answers to help you understand how Business Hub supports your growth."
+>
+    <div class="faq-container" id="faq">
+        <!-- FAQ Item -->
+        <div class="faq-item">
+            <input type="checkbox" id="faq1" />
+            <label for="faq1" class="faq-question">
+                What services does Business Hub provide?
+            </label>
+            <div class="faq-answer">
+                Business Hub specializes in management consulting, strategic
+                planning, organizational development, performance optimization,
+                and business transformation.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="checkbox" id="faq2" />
+            <label for="faq2" class="faq-question">
+                How does Business Hub help organizations improve?
+            </label>
+            <div class="faq-answer">
+                We analyze your operations, identify gaps, streamline workflows,
+                and create strategies that drive efficiency and growth.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="checkbox" id="faq3" />
+            <label for="faq3" class="faq-question">
+                Do you offer custom consulting or fixed packages?
+            </label>
+            <div class="faq-answer">
+                All our solutions are customized. We tailor each consulting
+                engagement to match your business model, goals, and industry.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="checkbox" id="faq4" />
+            <label for="faq4" class="faq-question">
+                Can Business Hub support digital transformation initiatives?
+            </label>
+            <div class="faq-answer">
+                Yes. We assist with digital strategy, process digitization,
+                system adoption, organizational change, and employee alignment.
+            </div>
+        </div>
+
+        <div class="faq-item">
+            <input type="checkbox" id="faq5" />
+            <label for="faq5" class="faq-question">
+                Which industries do you work with?
+            </label>
+            <div class="faq-answer">
+                We support organizations across private, public, and non-profit
+                sectors including healthcare, education, technology, retail, and
+                more.
+            </div>
+        </div>
+    </div>
+</Section>
