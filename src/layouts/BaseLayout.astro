@@ -9,39 +9,43 @@ const { title } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>{title} — Tabemed</title>
-        <link
-            rel="shortcut icon"
-            href="images/Favicon_256.png"
-            type="image/x-icon"
+
+        <title>{title} — bussiness hub</title>
+
+        <!-- Favicon -->
+        <link rel="icon" href="/images/Favicon_256.png" type="image/png" />
+
+        <!-- SEO -->
+        <meta
+            name="description"
+            content="bussiness hub provides advanced prosthetics, orthotics, and mobility solutions inspired by Egypt’s medical heritage. Precision care. Modern engineering. Human dignity."
         />
-        <!-- google fonts -->
+        <meta
+            name="keywords"
+            content="prosthetics, orthotics, mobility, medical devices, Egypt, rehabilitation, gait analysis, healthcare"
+        />
+        <link rel="canonical" href="https://bussiness hub.com/" />
+
+        <!-- OpenGraph -->
+        <meta property="og:title" content={`${title} — bussiness hub`} />
+        <meta
+            property="og:description"
+            content="Modern prosthetic & orthotic solutions blending Egyptian heritage with medical technology."
+        />
+        <meta property="og:image" content="/images/og-default.jpg" />
+        <meta property="og:type" content="website" />
+
+        <!-- Fonts: Noto Sans + Noto Sans Arabic -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <!-- <link
-            href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap"
-            rel="stylesheet"
-        /> -->
-
         <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
-
-        <meta
-            name="description"
-            content="Tabemed provides professional medical services, doctors appointments, diagnostics, and healthcare solutions with modern and trusted technology."
-        />
-        <meta
-            name="keywords"
-            content="medical, healthcare, clinic, doctors, hospital, diagnostics, medical services"
-        />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="canonical" href="https://your-domain.com/" />
 
         <!-- Bootstrap CSS -->
         <!-- <link
