@@ -1,4 +1,4 @@
-import { PUBLIC_KEY, SERVICE, TEMPLATE } from "../../lib/email-js.js";
+import { PUBLIC_KEY, SERVICE, TEMPLATE } from "../../lib/email-js";
 
 export async function post({ request }) {
     const formData = await request.formData();
