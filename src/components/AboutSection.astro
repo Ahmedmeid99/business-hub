@@ -1,7 +1,7 @@
 ---
 import Section from "../ui/Section.astro";
 import aboutImage from "../../public/images/01.jpg";
-import aboutImage2 from "../../public/images/01.jpg"; // second image
+import aboutImage2 from "../../public/images/01.jpg";
 ---
 
 <style>
@@ -18,11 +18,25 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
         padding: 6rem 0;
         overflow: hidden;
         margin-bottom: 3rem;
+        text-align: start;
     }
 
-    /* ORANGE CURVE */
+    /* =====================================================
+       ORANGE CURVES
+       ===================================================== */
+
+    /* Section 1 curve (top-left) */
     .orange-curve {
         position: absolute;
+        top: 0;
+        left: 0;
+        width: 55%;
+        height: 70%;
+        background: var(--brand);
+        z-index: 1;
+    }
+    .orange-curve.bottom-left {
+        bottom: 0;
         top: 0;
         left: 0;
         width: 55%;
@@ -31,15 +45,21 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
         border-bottom-right-radius: 220px;
         z-index: 1;
     }
-
-    /* MIRRORED CURVE FOR SECOND SECTION */
-    .orange-curve.right {
-        left: auto;
-        right: 0;
-        border-bottom-right-radius: 0;
-        border-bottom-left-radius: 220px;
+    /* Section 2 curve (BOTTOM-LEFT ROTATED 180°) */
+    .orange-curve.top-left {
+        bottom: 0;
+        top: 0;
+        left: 0;
+        width: 55%;
+        height: 85%;
+        background: var(--brand);
+        border-top-right-radius: 220px;
+        z-index: 1;
     }
 
+    /* =====================================================
+       GRID STRUCTURE
+       ===================================================== */
     .content-area {
         position: relative;
         z-index: 3;
@@ -49,14 +69,26 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
         display: grid;
         grid-template-columns: 1.1fr 0.9fr;
         align-items: center;
-        text-align: left;
         gap: 3rem;
     }
 
-    /* TEXT BLOCK */
+    /* Section 2 custom alignment */
+    .section-2-layout {
+        align-items: end;
+    }
+
+    /* =====================================================
+       TEXT BLOCK
+       ===================================================== */
     .left-block,
     .right-block-text {
         padding-left: 2rem;
+    }
+
+    .bottom-align {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
     }
 
     .main-title {
@@ -86,7 +118,9 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
         color: var(--dark);
     }
 
-    /* IMAGE MASK */
+    /* =====================================================
+       IMAGE MASK
+       ===================================================== */
     .image-mask {
         width: 100%;
         height: 360px;
@@ -101,25 +135,33 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
         object-fit: cover;
     }
 
-    /* MIRRORED IMAGE MASK */
+    /* Section 2 mirrored */
     .image-mask.mirror {
         border-radius: 360px 360px 0 0;
     }
 
-    /* RESPONSIVE */
+    /* =====================================================
+       RESPONSIVE
+       ===================================================== */
+
     @media (max-width: 900px) {
         .orange-curve {
             width: 100%;
             height: 45%;
             border-bottom-right-radius: 160px;
         }
-        .orange-curve.right {
-            border-bottom-left-radius: 160px;
-        }
 
-        .content-area {
+        /* .orange-curve.bottom-left {
+            width: 100%;
+            height: 45%;
+            border-top-right-radius: 160px;
+        } */
+
+        .content-area,
+        .section-2-layout {
             grid-template-columns: 1fr;
             text-align: center;
+            align-items: center;
         }
 
         .left-block,
@@ -127,23 +169,24 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
             padding-left: 0;
         }
 
-        .main-text {
-            margin-left: auto;
-            margin-right: auto;
+        .bottom-align {
+            align-items: center;
         }
 
         .image-mask,
         .image-mask.mirror {
             margin: 0 auto;
-            width: 85%;
+            width: 90%;
         }
     }
 </style>
 
-<!-- ========================== SECTION 1 ========================== -->
+<!-- =======================================================================
+     SECTION 1 — IMAGE RIGHT / TEXT LEFT / TOP-LEFT CURVE
+     ======================================================================= -->
 <Section>
     <div class="about-wrapper">
-        <div class="orange-curve"></div>
+        <div class="orange-curve bottom-left"></div>
 
         <div class="content-area">
             <!-- TEXT LEFT -->
@@ -158,9 +201,9 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
                 </h2>
 
                 <p class="main-text">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
-                    diam nonummy nibh euismod tincidunt ut laoreet dolore magna
-                    aliquam erat volutpat.
+                    Delivering modern business solutions designed to help
+                    companies grow with clarity, adaptability, and long-term
+                    strategic strength.
                 </p>
 
                 <div class="slogan">
@@ -177,17 +220,16 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
     </div>
 </Section>
 
-<!-- ========================== SECTION 2 (MIRRORED) ========================== -->
+<!-- =======================================================================
+     SECTION 2 — IMAGE RIGHT / TEXT LEFT (BOTTOM) / CURVE BOTTOM-LEFT ROTATED
+     ======================================================================= -->
 <Section>
     <div class="about-wrapper">
-        <div class="orange-curve right"></div>
+        <div class="orange-curve top-left"></div>
 
-        <div class="content-area">
-            <div class="image-mask mirror">
-                <img src={aboutImage2.src} alt="About" />
-            </div>
-
-            <div class="right-block-text">
+        <div class="content-area section-2-layout">
+            <!-- TEXT LEFT (BOTTOM ALIGNED) -->
+            <div class="right-block-text bottom-align">
                 <img
                     src="/images/BH_logo_vertical.png"
                     style="width:165px; margin-bottom:2rem;"
@@ -198,15 +240,20 @@ import aboutImage2 from "../../public/images/01.jpg"; // second image
                 </h2>
 
                 <p class="main-text">
-                    Helping organizations build clarity, direction, and
-                    measurable performance through structured planning and
-                    modern management frameworks.
+                    Helping organizations build clarity, structure, and
+                    measurable success through informed leadership and durable
+                    strategic systems.
                 </p>
 
                 <div class="slogan">
                     Empowering <span>leaders.</span><br />
                     Transforming <span>organizations.</span>
                 </div>
+            </div>
+
+            <!-- IMAGE RIGHT -->
+            <div class="image-mask mirror section-2-image">
+                <img src={aboutImage2.src} alt="About Section 2" />
             </div>
         </div>
     </div>
