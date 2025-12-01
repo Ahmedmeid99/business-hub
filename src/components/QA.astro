@@ -24,6 +24,7 @@ import Section from "../ui/Section.astro";
         border: 1px solid #eee;
         box-shadow: 0 8px 28px rgba(0, 0, 0, 0.06);
         transition: 0.3s ease;
+        text-align: start;
     }
 
     .faq-item:hover {
@@ -106,6 +107,9 @@ import Section from "../ui/Section.astro";
 
         .faq-answer {
             font-size: 0.95rem;
+        }
+        .faq-question::after {
+            display: none;
         }
     }
 </style>

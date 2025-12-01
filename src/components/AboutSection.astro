@@ -18,7 +18,6 @@ import aboutImage2 from "../../public/images/01.jpg";
         padding: 6rem 0;
         overflow: hidden;
         margin-bottom: 3rem;
-        text-align: start;
     }
 
     /* =====================================================
@@ -31,27 +30,17 @@ import aboutImage2 from "../../public/images/01.jpg";
         top: 0;
         left: 0;
         width: 55%;
-        height: 70%;
+        height: 100% !important;
         background: var(--brand);
         z-index: 1;
     }
     .orange-curve.bottom-left {
-        bottom: 0;
-        top: 0;
-        left: 0;
-        width: 55%;
-        height: 70%;
         background: var(--brand);
         border-bottom-right-radius: 220px;
         z-index: 1;
     }
     /* Section 2 curve (BOTTOM-LEFT ROTATED 180°) */
     .orange-curve.top-left {
-        bottom: 0;
-        top: 0;
-        left: 0;
-        width: 55%;
-        height: 85%;
         background: var(--brand);
         border-top-right-radius: 220px;
         z-index: 1;
@@ -139,14 +128,17 @@ import aboutImage2 from "../../public/images/01.jpg";
     .image-mask.mirror {
         border-radius: 360px 360px 0 0;
     }
-
+    .content-area,
+    .section-2-layout {
+        text-align: start;
+    }
     /* =====================================================
        RESPONSIVE
        ===================================================== */
 
     @media (max-width: 900px) {
         .orange-curve {
-            width: 100%;
+            width: 100% !important;
             height: 45%;
             border-bottom-right-radius: 160px;
         }
@@ -160,7 +152,6 @@ import aboutImage2 from "../../public/images/01.jpg";
         .content-area,
         .section-2-layout {
             grid-template-columns: 1fr;
-            text-align: center;
             align-items: center;
         }
 

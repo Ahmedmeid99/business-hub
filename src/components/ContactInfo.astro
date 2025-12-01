@@ -52,18 +52,6 @@ import Section from "../ui/Section.astro";
     }
 
     /* Pencil spot behind icon */
-    .info-item::before {
-        content: "";
-        position: absolute;
-        left: 3px;
-        top: 6px;
-        width: 75px;
-        height: 38px;
-        z-index: 0;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-image: url("data:image/svg+xml,%3Csvg width='80' height='40' viewBox='0 0 80 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M10 25 Q25 5 40 20 T70 25 Q55 35 35 30 T10 25' fill='%23ff7415' fill-opacity='0.25'/%3E%3C/svg%3E");
-    }
 
     .info-icon {
         width: 52px;
@@ -83,6 +71,7 @@ import Section from "../ui/Section.astro";
         font-size: 1.2rem;
         color: var(--dark);
         font-weight: 700;
+        margin-right: 6px;
     }
 
     .info-text span,
@@ -158,6 +147,9 @@ import Section from "../ui/Section.astro";
     @media (max-width: 900px) {
         .contact-wrapper {
             grid-template-columns: 1fr;
+        }
+        .info-card {
+            padding: 3rem 1rem;
         }
     }
 </style>
