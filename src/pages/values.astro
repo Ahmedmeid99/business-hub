@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ValueSection from "../ui/ValueSection.astro";
+
+import clarity from "/public/images/values/Clarity.png";
+import community from "/public/images/values/Community.png";
+import growth from "/public/images/values/Growth.png";
+import inspiration from "/public/images/values/Inspiration & Impact.png";
+import mentorship from "/public/images/values/Mentorship.png";
+import practicality from "/public/images/values/Practicality & Structure.png";
+import success from "/public/images/values/Success & Ledearship.png";
+
+const values = [
+    {
+        label: "Clarity",
+        desc: "Helping individuals and organizations see their goals, direction, and potential with confidence.",
+        icon: clarity,
+    },
+    {
+        label: "Community",
+        desc: "Building meaningful connections and growth-focused networks.",
+        icon: community,
+    },
+    {
+        label: "Growth",
+        desc: "We believe in continuous development — personally, professionally, structurally.",
+        icon: growth,
+    },
+    {
+        label: "Inspiration & Impact",
+        desc: "Empowering leaders and teams to create real, positive, measurable change.",
+        icon: inspiration,
+    },
+    {
+        label: "Mentorship",
+        desc: "Guidance that supports learning, elevation, and real-world transformation.",
+        icon: mentorship,
+    },
+    {
+        label: "Practicality & Structure",
+        desc: "Systems, processes, and solutions designed for real-life application.",
+        icon: practicality,
+    },
+    {
+        label: "Success & Leadership",
+        desc: "Shaping confident, capable leaders prepared for modern business challenges.",
+        icon: success,
+    },
+];
+---
+
+<BaseLayout title="Our Values">
+    <ValueSection
+        title="Our Core Values"
+        subTitle="The foundation of Business Hub’s approach to growth, leadership & meaningful transformation."
+        values={values}
+    />
+</BaseLayout>

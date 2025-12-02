@@ -6,7 +6,7 @@ import Section from "../ui/Section.astro";
     .act {
         width: 100%;
         padding: 3rem;
-        background-color: var(--main, #80d1ea);
+        background-color: var(--main);
         display: flex;
         justify-content: center;
         align-items: center;
@@ -17,6 +17,7 @@ import Section from "../ui/Section.astro";
         margin-bottom: 10px;
         font-size: 2rem;
         text-align: center;
+        color: var(--dark);
     }
     .act p {
         font-size: 15px;
@@ -24,7 +25,7 @@ import Section from "../ui/Section.astro";
         margin: auto;
         padding-left: 2rem;
         padding-right: 2rem;
-        color: #fff;
+        color: var(--white);
         margin: 0.5rem 0 0 0;
         text-align: center;
         line-height: 1.5;
@@ -47,18 +48,18 @@ import Section from "../ui/Section.astro";
             color 0.3s;
     }
     .btn-contact {
-        background-color: #fff;
-        color: var(--main, #80d1ea);
+        background-color: var(--white);
+        color: var(--main);
     }
     .btn-contact:hover {
         background-color: var(--main-hover);
-        color: #fff;
+        color: var(--white);
         /* border: 1px solid #fff; */
     }
     .btn-more {
         background-color: transparent;
-        color: #fff;
-        border: 1px solid #fff !important;
+        color: var(--white);
+        border: 1px solid var(--white) !important;
     }
 
     .btn-more:hover {

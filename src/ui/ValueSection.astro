@@ -1,0 +1,79 @@
+---
+import { Image } from "astro:assets";
+import Section from "./Section.astro";
+
+const { title = "Our Values", subTitle = "", values = [] } = Astro.props;
+---
+
+<style>
+    .values-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 2rem;
+        margin-top: 3rem;
+        padding: 1rem 0;
+    }
+
+    .value-card {
+        /* background: #fff; */
+        border-radius: 18px;
+        /* box-shadow: 0 8px 25px rgba(0, 0, 0, 3%); */
+        /* border: 1px solid #eee; */
+        transition: 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .value-card:hover {
+        transform: translateY(-8px);
+        /* box-shadow: 0 14px 35px rgba(0, 0, 0, 5%); */
+    }
+
+    .value-icon {
+        width: 100%;
+        height: 200px;
+        /* border-radius: 50%; */
+        overflow: hidden;
+        margin-bottom: 1rem;
+        /* background: #f9f9f9; */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .value-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+    .value-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 0.6rem;
+        color: var(--main);
+    }
+
+    .value-desc {
+        color: #555;
+        font-size: 1rem;
+        line-height: 1.6;
+        padding: 0 1rem;
+    }
+</style>
+
+<Section title={title} subTitle={subTitle}>
+    <div class="values-grid">
+        {
+            values?.map((v: any) => (
+                <div class="value-card">
+                    <div class="value-icon">
+                        <Image src={v.icon} alt={v.label} />
+                    </div>
+                    <div class="value-title">{v.label}</div>
+                    {/* <div class="value-desc">{v.desc}</div> */}
+                </div>
+            ))
+        }
+    </div>
+</Section>

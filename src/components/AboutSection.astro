@@ -5,13 +5,6 @@ import aboutImage2 from "../../public/images/01.jpg";
 ---
 
 <style>
-    :root {
-        --brand: #ff7415;
-        --dark: #111;
-        --text: #333;
-        --bg-soft: #faf7f5;
-    }
-
     .about-wrapper {
         position: relative;
         background: var(--main-bg);
@@ -30,20 +23,21 @@ import aboutImage2 from "../../public/images/01.jpg";
         top: 0;
         left: 0;
         width: 55%;
-        height: 100% !important;
-        background: var(--brand);
+        height: 100%;
+        background: var(--main);
         z-index: 1;
     }
     .orange-curve.bottom-left {
-        background: var(--brand);
+        background: var(--main);
         border-bottom-right-radius: 220px;
         z-index: 1;
     }
     /* Section 2 curve (BOTTOM-LEFT ROTATED 180°) */
     .orange-curve.top-left {
-        background: var(--brand);
+        background: var(--main);
         border-top-right-radius: 220px;
         z-index: 1;
+        height: 84%;
     }
 
     /* =====================================================
@@ -89,7 +83,7 @@ import aboutImage2 from "../../public/images/01.jpg";
     }
 
     .main-text {
-        color: var(--text);
+        color: var(--white);
         line-height: 1.8rem;
         margin-bottom: 2rem;
         font-size: 1.05rem;
@@ -112,7 +106,8 @@ import aboutImage2 from "../../public/images/01.jpg";
        ===================================================== */
     .image-mask {
         width: 100%;
-        height: 360px;
+        /* height: 360px; */
+        height: 100%;
         border-radius: 0 0 360px 360px;
         overflow: hidden;
         position: relative;
@@ -139,15 +134,14 @@ import aboutImage2 from "../../public/images/01.jpg";
     @media (max-width: 900px) {
         .orange-curve {
             width: 100% !important;
-            height: 45%;
-            border-bottom-right-radius: 160px;
         }
 
-        /* .orange-curve.bottom-left {
-            width: 100%;
-            height: 45%;
-            border-top-right-radius: 160px;
-        } */
+        .orange-curve.bottom-left {
+            height: 55%;
+        }
+        .orange-curve.top-left {
+            height: 55%;
+        }
 
         .content-area,
         .section-2-layout {

@@ -7,14 +7,6 @@ const someCourses = courses.slice(0, 3);
 ---
 
 <style>
-    :root {
-        --brand: #ff7415;
-        --main: #105975;
-        --text: #333;
-        --white: #fff;
-        --bg-soft: #faf7f5;
-    }
-
     /* Main wrapper */
     .courses-wrapper {
         max-width: 1200px;
@@ -93,7 +85,7 @@ const someCourses = courses.slice(0, 3);
     .course-info {
         font-size: 1.1rem;
         font-weight: 700;
-        color: var(--brand);
+        color: var(--main);
         margin-top: auto;
         margin-bottom: 1rem;
     }
@@ -102,13 +94,13 @@ const someCourses = courses.slice(0, 3);
     .course-btn {
         display: inline-block;
         padding: 0.8rem 1.5rem;
-        background: var(--brand);
+        background: var(--main);
         color: var(--white);
         border-radius: 8px;
         text-decoration: none;
         font-weight: 700;
-        border-bottom: 4px solid #d96412;
-        border-right: 3px solid #d96412;
+        border-bottom: 4px solid var(--main);
+        border-right: 3px solid var(--main);
         transition: 0.3s;
         font-size: 0.95rem;
     }
@@ -122,13 +114,13 @@ const someCourses = courses.slice(0, 3);
         display: inline-block;
         margin: 2rem auto 0 auto;
         padding: 0.9rem 2rem;
-        background: var(--brand);
+        background: var(--main);
         color: var(--white);
         border-radius: 8px;
         text-decoration: none;
         font-weight: 700;
-        border-bottom: 5px solid #d96412;
-        border-right: 3px solid #d96412;
+        border-bottom: 5px solid var(--main);
+        border-right: 3px solid var(--main);
         transition: 0.3s;
         text-align: center;
     }

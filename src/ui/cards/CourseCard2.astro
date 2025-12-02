@@ -13,7 +13,8 @@ const { title, desc, duration, image, slug, color = "#ff7415" } = Astro.props;
         display: flex;
         flex-direction: column;
         box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
-        border: 1px solid #eee;
+        border: 1px solid var(--main);
+        /* border: 1px solid #eee; */
     }
 
     .course-card:hover {

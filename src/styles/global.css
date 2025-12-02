@@ -17,17 +17,27 @@
     --text-light: #555555;
 
     --main: #ff7415;
-    --main-hover: #d15e11;
-    --accent: #f4b400;
-    --accent-hover: #c79200;
+    --main-hover: rgb(102 47 10);
+
+    --accent: #ffb217;
+    --accent-hover: rgb(102 84 10);
+
+    --blue: #24b2b2;
+    --blue-light: rgb(215 255 255);
+    --blue-light: rgb(10 102 100);
+
+
+    /*   rgb(255 246 209);*/
 
     /* #4285f4 */
 
 
     --white: #ffffff;
+    --dark: #111;
     --nav-height: 90px;
     --card-bg: #ffffff;
     --main-rgb: 129, 209, 231;
+    --transition: .3s;
     /* manually extracted rgb from #81D1E7 */
 
 }
@@ -74,4 +84,10 @@ p {
     padding: 2rem;
     background: linear-gradient(180deg, var(--accent), #fff9ee);
     border-radius: 12px;
+}
+
+@media (max-width:687px) {
+    html {
+        font-size: 12px;
+    }
 }

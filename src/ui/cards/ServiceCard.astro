@@ -8,13 +8,17 @@ const { iconClass } = Astro.props;
         border-radius: 16px;
         padding: 1.8rem 1.4rem;
         text-align: center;
-        border: 1px solid #eaeaea;
+        border: 1px solid var(--main);
         box-shadow: 0 6px 20px rgba(0, 0, 0, 0.05);
 
         /* Fade-up animation */
-        opacity: 0;
-        transform: translateY(25px);
-        animation: fadeUp 0.8s ease forwards;
+        /* opacity: 0; */
+        /* transform: translateY(25px); */
+        /* animation: fadeUp 0.8s ease forwards; */
+        transition: var(--transition);
+    }
+    .card:hover {
+        transform: scale(0.97);
     }
 
     @keyframes fadeUp {

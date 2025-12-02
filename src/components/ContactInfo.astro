@@ -2,15 +2,21 @@
 import Section from "../ui/Section.astro";
 ---
 
-<style>
-    :root {
-        --brand: #ff7415;
-        --dark: #111;
-        --text: #444;
-        --text-light: #777;
-        --bg-soft: #faf7f5;
-    }
+<!-- Load EmailJS (must be at top OF BODY, not inside <head> tag in Astro components) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"
+></script>
 
+<script is:inline>
+    window.addEventListener("DOMContentLoaded", () => {
+        if (window.emailjs) {
+            window.emailjs.init("oT7J803f0HsN0V0HN"); // your PUBLIC KEY
+        } else {
+            console.error("EmailJS failed to load");
+        }
+    });
+</script>
+
+<style>
     .contact-wrapper {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -19,13 +25,13 @@ import Section from "../ui/Section.astro";
         margin: auto;
     }
 
-    /* LEFT CARD (INFO) */
-    .info-card {
-        background: #fff;
+    .info-card,
+    .form-card {
+        background: var(--white);
         padding: 2.5rem;
         border-radius: 22px;
         box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
-        border: 1px solid #eee;
+        border: 1px solid var(--white);
     }
 
     .info-title {
@@ -41,7 +47,6 @@ import Section from "../ui/Section.astro";
         gap: 1.4rem;
     }
 
-    /* INFO ITEM */
     .info-item {
         display: flex;
         align-items: center;
@@ -51,32 +56,24 @@ import Section from "../ui/Section.astro";
         position: relative;
     }
 
-    /* Pencil spot behind icon */
-
     .info-icon {
         min-width: 52px;
         height: 52px;
-        flex-basis: 50px;
+        background: #ff74153b;
         border-radius: 14px;
-        background: rgba(255, 116, 21, 0.16);
         display: flex;
         align-items: center;
         justify-content: center;
         font-size: 1.4rem;
-        color: var(--brand);
-        position: relative;
-        z-index: 2;
+        color: var(--main);
     }
-
     .info-text {
         text-align: start;
     }
-
     .info-text strong {
         font-size: 1.2rem;
         color: var(--dark);
         font-weight: 700;
-        margin-right: 6px;
     }
 
     .info-text span,
@@ -84,19 +81,6 @@ import Section from "../ui/Section.astro";
         font-size: 1rem;
         color: var(--text-light);
         text-decoration: none;
-    }
-
-    .info-text a:hover {
-        color: var(--brand);
-    }
-
-    /* RIGHT CARD (FORM) */
-    .form-card {
-        background: #fff;
-        padding: 2.5rem;
-        border-radius: 22px;
-        box-shadow: 0 8px 35px rgba(0, 0, 0, 0.08);
-        border: 1px solid #eee;
     }
 
     form {
@@ -111,35 +95,32 @@ import Section from "../ui/Section.astro";
         padding: 1rem;
         border-radius: 12px;
         border: 1px solid #ddd;
-        font-size: 1rem;
-        font-family: inherit;
         background: #fafafa;
         transition: 0.3s;
     }
-
-    input:focus,
-    textarea:focus {
-        border-color: var(--brand);
-        background: #fff;
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(255, 116, 21, 0.2);
-    }
-
     textarea {
         height: 150px;
         resize: none;
     }
 
+    input:focus,
+    textarea:focus {
+        border-color: var(--main);
+        background: #fff;
+        outline: none;
+        box-shadow: 0 0 0 3px rgba(255, 116, 21, 0.2);
+    }
+
     button {
         padding: 1.1rem;
-        background: var(--brand);
-        border: none;
+        background: var(--main);
         border-radius: 14px;
         color: #fff;
         font-size: 1.1rem;
         cursor: pointer;
-        transition: 0.35s;
         font-weight: 600;
+        transition: 0.3s;
+        border: none;
     }
 
     button:hover {
@@ -148,27 +129,14 @@ import Section from "../ui/Section.astro";
         box-shadow: 0 8px 20px rgba(255, 116, 21, 0.35);
     }
 
-    /* RESPONSIVE */
+    #form-status {
+        margin-top: 10px;
+        font-weight: 600;
+    }
+
     @media (max-width: 900px) {
         .contact-wrapper {
             grid-template-columns: 1fr;
-        }
-        .info-card {
-            padding: 3rem 1rem;
-        }
-        .info-title {
-            font-size: 1.5rem;
-        }
-        .info-text strong {
-            font-size: 1rem;
-        }
-        .info-text span {
-            font-size: 0.9rem;
-        }
-        .info-icon {
-            min-width: 40px;
-            height: 40px;
-            font-size: 1rem;
         }
     }
 </style>
@@ -178,7 +146,7 @@ import Section from "../ui/Section.astro";
     subTitle="Reach out for consultations, inquiries, or collaborations — we're here to help your business grow."
 >
     <div class="contact-wrapper">
-        <!-- LEFT: CONTACT INFORMATION -->
+        <!-- LEFT SIDE -->
         <div class="info-card">
             <h3 class="info-title">Contact Information</h3>
 
@@ -188,7 +156,7 @@ import Section from "../ui/Section.astro";
                         <i class="fa-solid fa-location-dot"></i>
                     </div>
                     <div class="info-text">
-                        <strong>Our Location</strong>
+                        <strong>Our Location</strong><br />
                         <span>123 Mobility Street, Cairo, Egypt</span>
                     </div>
                 </div>
@@ -198,7 +166,7 @@ import Section from "../ui/Section.astro";
                         <i class="fa-solid fa-phone"></i>
                     </div>
                     <div class="info-text">
-                        <strong>Phone</strong>
+                        <strong>Phone</strong><br />
                         <a href="tel:+201234567890">+20 123 456 7890</a>
                     </div>
                 </div>
@@ -208,7 +176,7 @@ import Section from "../ui/Section.astro";
                         <i class="fa-solid fa-envelope"></i>
                     </div>
                     <div class="info-text">
-                        <strong>Email</strong>
+                        <strong>Email</strong><br />
                         <a href="mailto:info@tabemed.com">info@tabemed.com</a>
                     </div>
                 </div>
@@ -218,24 +186,70 @@ import Section from "../ui/Section.astro";
                         <i class="fa-solid fa-clock"></i>
                     </div>
                     <div class="info-text">
-                        <strong>Working Hours</strong>
+                        <strong>Working Hours</strong><br />
                         <span>Sat – Thu, 9:00 AM – 6:00 PM</span>
                     </div>
                 </div>
             </div>
         </div>
 
-        <!-- RIGHT: CONTACT FORM -->
+        <!-- RIGHT SIDE -->
         <div class="form-card">
             <h3 class="info-title">Send Us a Message</h3>
 
-            <form>
-                <input type="text" placeholder="Your Name" required />
-                <input type="email" placeholder="Email Address" required />
-                <input type="text" placeholder="Subject" />
-                <textarea placeholder="Your Message" required></textarea>
+            <form id="contact-form">
+                <input
+                    type="text"
+                    name="name"
+                    placeholder="Your Name"
+                    required
+                />
+                <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    required
+                />
+                <input
+                    type="text"
+                    name="subject"
+                    placeholder="Subject"
+                    required
+                />
+                <textarea name="message" placeholder="Your Message" required
+                ></textarea>
+
                 <button type="submit">Send Message</button>
+
+                <div id="form-status"></div>
             </form>
         </div>
     </div>
 </Section>
+
+<script is:inline>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("form-status");
+
+    if (form) {
+        form.addEventListener("submit", (event) => {
+            event.preventDefault();
+
+            status.textContent = "Sending...";
+            status.style.color = "var(--main)";
+
+            window.emailjs
+                .sendForm("service_kkd3c4g", "template_p0fmc2r", form)
+                .then(() => {
+                    status.textContent = "✔ Message sent successfully!";
+                    status.style.color = "green";
+                    form.reset();
+                })
+                .catch((err) => {
+                    console.error(err);
+                    status.textContent = "❌ Error sending message.";
+                    status.style.color = "red";
+                });
+        });
+    }
+</script>

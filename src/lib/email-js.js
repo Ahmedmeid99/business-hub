@@ -1,6 +1,6 @@
-const PUBLIC_KEY = "ThijL73HGDMaw4i7L";
-const SERVICE = "service_gynfgdb";
-const TEMPLATE = "template_1usngjq";
+const PUBLIC_KEY = "oT7J803f0HsN0V0HN";
+const SERVICE = "service_y4zpux3";
+const TEMPLATE = "template_p0fmc2r";
 
 //----------------------------------------
 // EmailJS functionality
