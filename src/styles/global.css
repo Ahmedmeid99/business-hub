@@ -85,9 +85,3 @@ p {
     background: linear-gradient(180deg, var(--accent), #fff9ee);
     border-radius: 12px;
 }
-
-@media (max-width:687px) {
-    html {
-        font-size: 12px;
-    }
-}
