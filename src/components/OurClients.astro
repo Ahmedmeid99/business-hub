@@ -1,0 +1,144 @@
+---
+import Section from "../ui/Section.astro";
+---
+
+<style>
+    .clients-wrapper {
+        width: 100%;
+        overflow: hidden;
+        /* padding: 3rem 0 5rem 0; */
+        display: flex;
+        flex-direction: column;
+        gap: 3.5rem;
+        max-width: 1200px;
+        margin: auto;
+    }
+
+    /* Slider row container */
+    .slider-row {
+        width: 100%;
+        overflow: hidden;
+        position: relative;
+    }
+
+    /* Track that scrolls */
+    .slide-track {
+        display: flex;
+        align-items: center;
+        gap: 3rem;
+        width: max-content;
+    }
+
+    /* Box to normalize sizes */
+    .logo-box {
+        width: 140px; /* FIX WIDTH */
+        height: 80px; /* FIX HEIGHT */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px;
+    }
+
+    /* Logo styling */
+    .logo-box img {
+        max-height: 70px;
+        max-width: 120px;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        filter: grayscale(100%);
+        opacity: 0.75;
+        transition: 0.3s;
+    }
+
+    .logo-box img:hover {
+        filter: grayscale(0);
+        opacity: 1;
+        transform: scale(1.06);
+    }
+
+    /* Animation Right → Left */
+    @keyframes scroll-rtl {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-50%);
+        }
+    }
+
+    /* Animation Left → Right */
+    @keyframes scroll-ltr {
+        0% {
+            transform: translateX(-50%);
+        }
+        100% {
+            transform: translateX(0);
+        }
+    }
+
+    /* Apply animation */
+    .slider-row.rtl .slide-track {
+        animation: scroll-rtl 26s linear infinite;
+    }
+    .slider-row.ltr .slide-track {
+        animation: scroll-ltr 26s linear infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+        .logo-box {
+            width: 110px;
+            height: 60px;
+        }
+        .logo-box img {
+            max-height: 50px;
+            max-width: 90px;
+        }
+    }
+</style>
+<!--  -->
+<Section title="Our Clients">
+    <div class="clients-wrapper">
+        <!-- ROW 1 – RIGHT TO LEFT -->
+        <div class="slider-row rtl">
+            <div class="slide-track">
+                <!-- Logos wrapped in .logo-box -->
+                <div class="logo-box"><img src="/images/clients/01.png" /></div>
+                <div class="logo-box"><img src="/images/clients/02.png" /></div>
+                <div class="logo-box"><img src="/images/clients/03.png" /></div>
+                <div class="logo-box"><img src="/images/clients/04.png" /></div>
+                <div class="logo-box"><img src="/images/clients/05.png" /></div>
+                <div class="logo-box"><img src="/images/clients/06.png" /></div>
+
+                <!-- Duplicate -->
+                <div class="logo-box"><img src="/images/clients/01.png" /></div>
+                <div class="logo-box"><img src="/images/clients/02.png" /></div>
+                <div class="logo-box"><img src="/images/clients/03.png" /></div>
+                <div class="logo-box"><img src="/images/clients/04.png" /></div>
+                <div class="logo-box"><img src="/images/clients/05.png" /></div>
+                <div class="logo-box"><img src="/images/clients/06.png" /></div>
+            </div>
+        </div>
+
+        <!-- ROW 2 – LEFT TO RIGHT -->
+        <div class="slider-row ltr">
+            <div class="slide-track">
+                <div class="logo-box"><img src="/images/clients/07.png" /></div>
+                <div class="logo-box"><img src="/images/clients/08.png" /></div>
+                <div class="logo-box"><img src="/images/clients/09.jpg" /></div>
+                <div class="logo-box"><img src="/images/clients/10.png" /></div>
+                <div class="logo-box"><img src="/images/clients/11.jpg" /></div>
+                <div class="logo-box"><img src="/images/clients/12.png" /></div>
+
+                <!-- Duplicate -->
+                <div class="logo-box"><img src="/images/clients/07.png" /></div>
+                <div class="logo-box"><img src="/images/clients/08.png" /></div>
+                <div class="logo-box"><img src="/images/clients/09.jpg" /></div>
+                <div class="logo-box"><img src="/images/clients/10.png" /></div>
+                <div class="logo-box"><img src="/images/clients/11.jpg" /></div>
+                <div class="logo-box"><img src="/images/clients/12.png" /></div>
+            </div>
+        </div>
+    </div>
+</Section>

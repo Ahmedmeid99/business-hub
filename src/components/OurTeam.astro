@@ -1,0 +1,177 @@
+---
+import Section from "../ui/Section.astro";
+
+const team = [
+    {
+        name: "Ahmed Hassan",
+        role: "CEO & Business Strategist",
+        image: "/images/people/person_1.jpg",
+        socials: {
+            linkedin: "#",
+            facebook: "#",
+            instagram: "#",
+        },
+    },
+    {
+        name: "Sara Mohamed",
+        role: "Operations Manager",
+        image: "/images/people/person_2.jpg",
+        socials: {
+            linkedin: "#",
+            facebook: "#",
+            instagram: "#",
+        },
+    },
+    {
+        name: "Omar Khaled",
+        role: "Training & Development Lead",
+        image: "/images/people/person_3.jpg",
+        socials: {
+            linkedin: "#",
+            facebook: "#",
+            instagram: "#",
+        },
+    },
+    {
+        name: "Laila Mostafa",
+        role: "Customer Relations Specialist",
+        image: "/images/people/person_4.jpg",
+        socials: {
+            linkedin: "#",
+            facebook: "#",
+            instagram: "#",
+        },
+    },
+];
+---
+
+<style>
+    .team-wrapper {
+        max-width: 1200px;
+        margin: 0 auto;
+        /* padding: 2rem 1rem 4rem 1rem; */
+    }
+
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .team-card {
+        background: #fff;
+        border-radius: 20px;
+        padding: 1.5rem;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.07);
+        text-align: center;
+        border: 1px solid #eee;
+        position: relative;
+        overflow: hidden;
+        transition:
+            transform 0.35s ease,
+            box-shadow 0.35s ease;
+    }
+
+    .team-card:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 14px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    /* IMAGE */
+    .team-img {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin: 0 auto 1rem auto;
+        border: 4px solid var(--main);
+        box-shadow: 0 0 0 6px rgba(255, 116, 21, 0.15);
+    }
+
+    /* NAME */
+    .team-name {
+        font-size: 1.35rem;
+        font-weight: 700;
+        color: var(--main);
+        margin-bottom: 0.3rem;
+        position: relative;
+        padding-bottom: 0.5rem;
+    }
+
+    /* Pencil line underline */
+    .team-name::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 4px;
+        width: 80px;
+        background-image: url("data:image/svg+xml,%3Csvg width='140' height='10' viewBox='0 0 140 10' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M3 5 C30 0, 60 10, 120 5 S 160 5, 200 5' stroke='%23ff7415' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-size: contain;
+    }
+
+    /* ROLE */
+    .team-role {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 1rem;
+    }
+
+    /* SOCIAL ICONS */
+    .team-socials {
+        margin-top: 1rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .team-socials a {
+        font-size: 1.2rem;
+        color: var(--text-light);
+        transition: 0.3s;
+    }
+
+    .team-socials a:hover {
+        color: var(--main);
+        transform: scale(1.15);
+    }
+</style>
+
+<Section
+    title="Meet Our Team"
+    subTitle="The people behind our vision — dedicated, skilled, and committed to empowering growth."
+>
+    <div class="team-wrapper">
+        <div class="team-grid">
+            {
+                team.map((member) => (
+                    <div class="team-card">
+                        <img
+                            src={member.image}
+                            alt={member.name}
+                            class="team-img"
+                        />
+
+                        <h3 class="team-name">{member.name}</h3>
+                        <p class="team-role">{member.role}</p>
+
+                        <div class="team-socials">
+                            <a href={member.socials.facebook}>
+                                <i class="fa-brands fa-facebook" />
+                            </a>
+                            <a href={member.socials.linkedin}>
+                                <i class="fa-brands fa-linkedin" />
+                            </a>
+                            <a href={member.socials.instagram}>
+                                <i class="fa-brands fa-instagram" />
+                            </a>
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</Section>
