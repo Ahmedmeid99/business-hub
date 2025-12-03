@@ -14,44 +14,69 @@ const { title } = Astro.props;
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-        <title>{title} — bussiness hub</title>
+        <title>{title} — Business Hub</title>
 
         <!-- Favicon -->
         <link rel="icon" href="/images/Favicon_256.png" type="image/png" />
 
-        <!-- SEO -->
+        <!-- ===================== SEO MAIN DESCRIPTION ====================== -->
         <meta
             name="description"
-            content="bussiness hub provides advanced prosthetics, orthotics, and mobility solutions inspired by Egypt’s medical heritage. Precision care. Modern engineering. Human dignity."
+            content="Business Hub is a management consulting company specializing in business analysis, strategic planning, organizational development, performance improvement, quality consulting, project management, HR development, marketing analytics, and feasibility studies. مركز متخصص في الاستشارات الإدارية، وتطوير الهياكل التنظيمية، والتحليل الإداري، وتحسين العمليات، وإدارة التغيير، وإدارة الجودة، وإعداد الدراسات والأنظمة والسياسات."
         />
+
+        <!-- ===================== SEO KEYWORDS ====================== -->
         <meta
             name="keywords"
-            content="prosthetics, orthotics, mobility, medical devices, Egypt, rehabilitation, gait analysis, healthcare"
+            content="
+            management consulting,
+            business analysis,
+            organizational development,
+            strategic planning,
+            performance management,
+            change management,
+            feasibility studies,
+            HR consulting,
+            PMO consulting,
+            process improvement,
+            business consulting Egypt,
+            الاستشارات الإدارية,
+            تطوير الأعمال,
+            التحليل الإداري,
+            الهياكل التنظيمية,
+            التطوير المؤسسي,
+            تحسين العمليات,
+            إدارة الجودة,
+            دراسات الجدوى,
+            إدارة التغيير,
+            تخطيط استراتيجي
+        "
         />
-        <link rel="canonical" href="https://bussiness hub.com/" />
 
-        <!-- OpenGraph -->
-        <meta property="og:title" content={`${title} — bussiness hub`} />
+        <!-- Canonical -->
+        <link rel="canonical" href="https://business-hub.com/" />
+
+        <!-- ===================== OpenGraph ====================== -->
+        <meta property="og:title" content={`${title} — Business Hub`} />
+
         <meta
             property="og:description"
-            content="Modern prosthetic & orthotic solutions blending Egyptian heritage with medical technology."
+            content="Engaging in Management Consultancy Activities including organizational and strategic consulting, business analysis, performance development, process improvement, policy and procedure development, feasibility studies, and organizational development."
         />
+
         <meta property="og:image" content="/images/og-default.jpg" />
         <meta property="og:type" content="website" />
+        <meta property="og:locale" content="en_US" />
+        <meta property="og:locale:alternate" content="ar_AR" />
 
-        <!-- Fonts: Noto Sans + Noto Sans Arabic -->
+        <!-- ===================== FONTS ====================== -->
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
         <link
             href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;500;600;700;800&family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&display=swap"
             rel="stylesheet"
         />
-
-        <!-- Bootstrap CSS -->
-        <!-- <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-        /> -->
     </head>
 
     <body>
