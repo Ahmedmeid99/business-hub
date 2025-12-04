@@ -1,7 +1,7 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import Section from "../ui/Section.astro";
-import { courses } from "../data/courses";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import Section from "../../ui/Section.astro";
+import { courses } from "../../data/courses";
 
 export async function getStaticPaths() {
     return courses.map((course) => ({

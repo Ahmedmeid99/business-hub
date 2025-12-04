@@ -130,7 +130,7 @@ const { title, desc, duration, image, slug, color = "#ff7415" } = Astro.props;
 </style>
 
 <div class="course-card" style={`--hover-color: ${color}`}>
-    <a href={`/${slug}`}>
+    <a href={`courses/${slug}`}>
         <div class="course-img-wrapper">
             <img src={image} alt={title} class="course-img" />
             <div class="overlay"></div>
