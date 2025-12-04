@@ -8,79 +8,107 @@ const { title = "Our Values", subTitle = "", values = [] } = Astro.props;
 <style>
     .values-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 2rem;
         margin-top: 3rem;
         padding: 1rem 0;
     }
 
     .value-card {
-        /* background: #fff; */
-        border-radius: 30px;
-        /* width: 150px; */
-        transition: 0.3s ease;
         position: relative;
+        border-radius: 22px;
         overflow: hidden;
-        border: 1px solid var(--brand);
-        /* border: 1px solid #eee; */
-        padding: 0 0 1rem 0;
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        border: 1px solid #eee;
+        background: #fff;
+        width: fit-content;
     }
 
     .value-card:hover {
         transform: translateY(-8px);
-        box-shadow: 0 8px 20px rgba(255, 116, 21, 0.35);
-        /* box-shadow: 0 14px 35px rgba(0, 0, 0, 5%); */
+        box-shadow: 0 12px 35px rgba(0,0,0,0.08);
     }
 
-    .value-icon {
-        width: auto;
-        height: fit-content;
-        /* border-radius: 50%; */
-        overflow: hidden;
-        margin-bottom: 1rem;
-        /* background: #f9f9f9; */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
-    }
-
-    .value-icon img {
+    /* IMAGE WRAPPER */
+    .value-img-wrapper {
         width: 100%;
+        height: 220px;
+        overflow: hidden;
+        border-top-left-radius: 22px;
+        border-top-right-radius: 22px;
+        position: relative;
+    }
+
+    .value-img-wrapper img {
+        width: auto;
         height: 100%;
-        object-fit: contain;
-        border-top-left-radius: 30px;
-        border-top-right-radius: 30px;
+        object-fit: cover;
+        transition: transform 0.5s ease;
     }
 
-    .value-title {
-        font-size: 1.2rem;
+    .value-card:hover .value-img-wrapper img {
+        transform: scale(1.08);
+    }
+
+    /* OVERLAY (appears on hover) */
+    .value-overlay {
+        position: absolute;
+        left: 0;
+        bottom: -100%;
+        width: 100%;
+        /* height: 65%; */
+        background: linear-gradient(
+            to top,
+            rgba(0,0,0,0.65),
+            rgba(0,0,0,0.1)
+        );
+        backdrop-filter: blur(2px);
+        color: #fff;
+        padding: 1.8rem 1rem 1rem;
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        font-size: 1.3rem;
         font-weight: 700;
-        margin-bottom: 0.6rem;
-        color: var(--main);
+        border-bottom-left-radius: 22px;
+        border-bottom-right-radius: 22px;
+        transition: bottom 0.45s ease;
+        text-align: center;
     }
 
+    .value-card:hover .value-overlay {
+        bottom: 0;
+    }
+
+    /* TEXT BELOW IMAGE */
     .value-desc {
-        color: #555;
+        padding: 1rem;
         font-size: 1rem;
+        color: #555;
         line-height: 1.6;
-        padding: 0 1rem;
     }
 </style>
 
 <Section title={title} subTitle={subTitle}>
     <div class="values-grid">
-        {
-            values?.map((v: any) => (
-                <div class="value-card">
-                    <div class="value-icon">
-                        <Image src={v.icon} alt={v.label} />
+        {values.map((v:any) => (
+            <div class="value-card">
+                
+                <!-- Image & hover overlay -->
+                <div class="value-img-wrapper">
+                    <Image src={v.icon} alt={v.label} />
+                    <div class="value-overlay">
+                        {v.label}
                     </div>
-                    <div class="value-title">{v.label}</div>
-                    <div class="value-desc">{v.desc}</div>
                 </div>
-            ))
-        }
+
+                <!-- Description -->
+                {/* <div class="value-desc">
+                    {v.desc}
+                </div> */}
+
+            </div>
+        ))}
     </div>
 </Section>

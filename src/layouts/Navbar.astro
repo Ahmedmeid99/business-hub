@@ -362,16 +362,16 @@ display: block;
 
         <nav class="main-nav">
             <ActiveLink href="/" text="Home" current={Astro.url.pathname} />
-            <ActiveLink
+            <!-- <ActiveLink
                 href="/about"
                 text="About"
                 current={Astro.url.pathname}
-            />
-            <!-- <div class="dropdown" id="servicesDropdown">
+            /> -->
+            <div class="dropdown" id="servicesDropdown">
                 <button>
                     <ActiveLink
-                        href="/services"
-                        text="Services"
+                        href="#"
+                        text="About"
                         current={Astro.url.pathname}
                     />
                     <div class="arrow down">
@@ -380,33 +380,34 @@ display: block;
                 >
                 <div class="dropdown-menu">
                     <ActiveLink
-                        href="/services/consulting"
-                        text="Consulting"
+                        href="/about"
+                        text="About"
                         current={Astro.url.pathname}
                     />
                     <ActiveLink
-                        href="/services/development"
-                        text="Development"
+                        href="/values"
+                        text="Values"
                         current={Astro.url.pathname}
                     />
                     <ActiveLink
-                        href="/services/design"
-                        text="Design"
+                        href="/gallery"
+                        text="Gallery"
                         current={Astro.url.pathname}
                     />
+                    
                 </div>
-            </div> -->
+            </div>
            
             <ActiveLink
                 href="/services"
                 text="Services"
                 current={Astro.url.pathname}
             />
-             <ActiveLink
+             <!-- <ActiveLink
                 href="/values"
                 text="Values"
                 current={Astro.url.pathname}
-            />
+            /> -->
             <ActiveLink
                 href="/courses"
                 text="Courses"
@@ -441,18 +442,18 @@ display: block;
 
     <nav class="side-links">
         <a href="/">Home</a>
-        <a href="/about">About</a>
+        <!-- <a href="/about">About</a> -->
+        <details>
+            <summary>About</summary>
+            <div class="nested-links">
+                <a href="/about">About</a>
+                <a href="/values">Values</a>
+                <a href="/gallery">Gallary</a>
+            </div>
+        </details>
 
         <a href="/services">Services</a>
-        <!-- <details>
-            <summary>Services</summary>
-            <div class="nested-links">
-                <a href="/services/Consulting">Consulting</a>
-                <a href="/services/development">Development</a>
-                <a href="/services/design">Design</a>
-            </div>
-        </details> -->
-        <a href="/values">Values</a>
+        <!-- <a href="/values">Values</a> -->
         <a href="/courses">Courses</a>
         <a href="/contactus">Contact</a>
     </nav>
