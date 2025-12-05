@@ -1,5 +1,3 @@
-// src/data/courses.js
-
 export const courses = [
     {
         title: "Strategic Business Planning",
@@ -7,6 +5,7 @@ export const courses = [
         duration: "6 Weeks",
         image: "/images/courses/01.jpeg",
         slug: "strategic-business-planning",
+        color: "#C7FFF5", // mint teal
     },
     {
         title: "Organizational Development",
@@ -14,6 +13,7 @@ export const courses = [
         duration: "4 Weeks",
         image: "/images/courses/02.jpeg",
         slug: "organizational-development",
+        color: "#FFF6C7", // soft yellow
     },
     {
         title: "Business Process Improvement",
@@ -21,6 +21,7 @@ export const courses = [
         duration: "5 Weeks",
         image: "/images/courses/03.jpeg",
         slug: "process-improvement",
+        color: "#FFDCC7", // peach
     },
     {
         title: "Change Management & Transformation",
@@ -28,6 +29,7 @@ export const courses = [
         duration: "5 Weeks",
         image: "/images/courses/04.jpeg",
         slug: "change-management",
+        color: "#FF9A6C", // coral
     },
     {
         title: "Project Management & PMO Foundations",
@@ -35,6 +37,7 @@ export const courses = [
         duration: "6 Weeks",
         image: "/images/courses/05.jpeg",
         slug: "project-management-pmo",
+        color: "#00A7A7", // deep teal
     },
     {
         title: "Business Analysis Essentials",
@@ -42,6 +45,7 @@ export const courses = [
         duration: "4 Weeks",
         image: "/images/courses/06.jpeg",
         slug: "business-analysis",
+        color: "#F7C543", // warm gold
     },
     {
         title: "Human Resources & KPI Development",
@@ -49,6 +53,7 @@ export const courses = [
         duration: "5 Weeks",
         image: "/images/courses/07.jpeg",
         slug: "hr-kpi-development",
+        color: "#FFBFA3", // soft coral-peach
     },
     {
         title: "Marketing Strategy & Competitive Analysis",
@@ -56,6 +61,7 @@ export const courses = [
         duration: "4 Weeks",
         image: "/images/courses/08.jpeg",
         slug: "marketing-strategy",
+        color: "#FFDCC7", // peach
     },
     {
         title: "Digital Transformation Strategy",
@@ -63,6 +69,7 @@ export const courses = [
         duration: "6 Weeks",
         image: "/images/courses/09.jpeg",
         slug: "digital-transformation",
+        color: "#C7FFF5", // mint teal
     },
     {
         title: "Leadership & Executive Development",
@@ -70,6 +77,7 @@ export const courses = [
         duration: "4 Weeks",
         image: "/images/courses/10.jpeg",
         slug: "leadership-development",
+        color: "#FF7415", // brand orange
     },
     {
         title: "Performance Management Systems",
@@ -77,6 +85,7 @@ export const courses = [
         duration: "5 Weeks",
         image: "/images/courses/11.jpeg",
         slug: "performance-management",
+        color: "#FFF6C7", // soft yellow
     },
     {
         title: "Customer Experience & Service Excellence",
@@ -84,6 +93,7 @@ export const courses = [
         duration: "4 Weeks",
         image: "/images/courses/12.jpeg",
         slug: "customer-experience",
+        color: "#FFDCC7", // peach
     },
     {
         title: "Financial Planning & Business Feasibility",
@@ -91,6 +101,7 @@ export const courses = [
         duration: "6 Weeks",
         image: "/images/courses/13.jpeg",
         slug: "business-feasibility",
+        color: "#FFE9C7", // soft cream
     },
     {
         title: "Quality Management & Continuous Improvement",
@@ -98,5 +109,6 @@ export const courses = [
         duration: "5 Weeks",
         image: "/images/courses/14.jpeg",
         slug: "quality-management",
+        color: "#FF9A6C", // coral again
     }
 ];

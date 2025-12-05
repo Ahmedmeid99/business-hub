@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import Section from "../ui/Section.astro";
 import ValueSection from "../ui/ValueSection.astro";
 
 import clarity from "/public/images/values/Clarity.png";
@@ -49,10 +50,114 @@ const values = [
 ];
 ---
 
-<BaseLayout title="Our Values">
+<BaseLayout title="Our Values and Brand Principles">
     <ValueSection
         title="Our Core Values"
         subTitle="The foundation of Business Hub’s approach to growth, leadership & meaningful transformation."
         values={values}
     />
+
+    <!-- TAGLINE -->
+    <div class="paper">
+        <Section title="Our Tagline">
+            <!-- <p class="text-lg font-semibold italic">
+                “Training Minds. Building Businesses.”
+            </p> -->
+
+            <ul class="list-disc mt-4 ml-6 space-y-2">
+                <li>Training built on clarity and knowledge.</li>
+                <li>Development grounded in structure and real application.</li>
+                <li>
+                    A balance between academic thinking and practical expertise.
+                </li>
+                <li>
+                    A message for ambitious professionals seeking real growth.
+                </li>
+            </ul>
+        </Section>
+    </div>
+
+    <!-- MISSION -->
+    <div class="paper">
+        <Section title="Our Mission">
+            <p>
+                To empower professionals, leaders, and organizations through
+                practical, structured learning that bridges strategy and
+                execution — transforming complex concepts into clear, applicable
+                tools that create real impact in work and projects.
+            </p>
+        </Section>
+    </div>
+
+    <!-- VISION -->
+    <div class="paper">
+        <Section title="Our Vision">
+            <p>
+                To become the region’s most trusted hub for practical learning
+                in Project Management and Business Development — a connected
+                community that unlocks youth potential and links knowledge to
+                real-world application and meaningful career growth.
+            </p>
+        </Section>
+    </div>
 </BaseLayout>
+
+<style>
+    .paper {
+        background: white;
+        margin: 2rem auto;
+        padding: 0 1rem;
+        border-radius: 16px;
+        max-width: 90%;
+        box-shadow:
+            0 6px 20px rgba(0, 0, 0, 0.08),
+            0 2px 6px rgba(0, 0, 0, 0.05);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    /* .paper:hover {
+        transform: translateY(-2px);
+        transition: 0.3s ease;
+        box-shadow:
+            0 12px 32px rgba(0, 0, 0, 0.12),
+            0 4px 12px rgba(0, 0, 0, 0.06);
+    } */
+
+    .section-title {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+
+    .paper ul {
+        list-style: none;
+        padding-left: 0;
+        line-height: 1.9;
+        /* max-width: 750px; */
+        padding: 1.5rem auto;
+        margin: auto;
+    }
+
+    .paper ul li {
+        position: relative;
+        padding-left: 28px;
+        margin-bottom: 12px;
+    }
+
+    .paper ul li::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: 6px;
+        width: 14px;
+        height: 14px;
+
+        background: var(--main); /* Change color as needed */
+        border-radius: 0 50% 50% 0; /* half circle */
+    }
+
+    .paper p {
+        line-height: 1.9;
+        margin: 1.5rem auto;
+        /* max-width: 650px; */
+    }
+</style>
