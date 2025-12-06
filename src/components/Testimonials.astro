@@ -30,13 +30,6 @@ const makeStars = (rating: number) =>
 ---
 
 <style>
-    :root {
-        --brand: #ff7415;
-        --dark: #111;
-        --text: #444;
-        --bg-soft: #faf7f5;
-    }
-
     .ts-wrapper {
         max-width: 1200px;
         margin: 0 auto;
@@ -79,7 +72,7 @@ const makeStars = (rating: number) =>
         height: 130px;
         border-radius: 50%;
         object-fit: cover;
-        border: 5px solid var(--brand);
+        border: 5px solid var(--main);
         box-shadow: 0 0 0 6px rgba(255, 116, 21, 0.25);
     }
 
@@ -97,7 +90,7 @@ const makeStars = (rating: number) =>
     .ts-quote::before {
         content: "“";
         font-size: 3rem;
-        color: var(--brand);
+        color: var(--main);
         position: absolute;
         left: -0.6rem;
         top: -1.5rem;
@@ -106,7 +99,7 @@ const makeStars = (rating: number) =>
     .ts-quote::after {
         content: "”";
         font-size: 2.6rem;
-        color: var(--brand);
+        color: var(--main);
         position: absolute;
         right: -0.6rem;
         bottom: -1.3rem;
@@ -137,7 +130,7 @@ const makeStars = (rating: number) =>
     .ts-dot {
         width: 14px;
         height: 14px;
-        background: var(--brand);
+        background: var(--main);
         opacity: 0.35;
         border-radius: 50%;
         cursor: pointer;
@@ -160,9 +153,9 @@ const makeStars = (rating: number) =>
         align-items: center;
         justify-content: center;
 
-        border: 3px solid var(--brand);
+        border: 3px solid var(--main);
         /* background: #fff; */
-        color: var(--brand);
+        color: var(--main);
         font-size: 1.6rem;
 
         cursor: pointer;
@@ -183,16 +176,14 @@ const makeStars = (rating: number) =>
     }
 
     .ts-arrow:hover {
-        background: var(--brand);
+        background: var(--main);
         color: #fff;
     }
 
     @media (max-width: 900px) {
-        .ts-arrow-left {
-            left: 0;
-        }
+        .ts-arrow-left,
         .ts-arrow-right {
-            right: 0;
+            right: -20px;
         }
     }
 
